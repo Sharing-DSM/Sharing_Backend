@@ -23,7 +23,7 @@ dependencies {
     implementation(Dependencies.WEB)
     implementation(Dependencies.JACKSON)
     implementation(Dependencies.REFLECT)
-    implementation(Dependencies.JDK17)
+    implementation(Dependencies.JDK8)
     implementation(Dependencies.JWT)
     runtimeOnly(Dependencies.MYSQL)
     implementation(Dependencies.REDIS)

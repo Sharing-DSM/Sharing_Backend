@@ -5,7 +5,7 @@ object Dependencies {
     const val WEB = "org.springframework.boot:spring-boot-starter-web"
     const val JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
     const val REFLECT = "org.jetbrains.kotlin:kotlin-reflect"
-    const val JDK17 = "org.jetbrains.kotlin:kotlin-stdlib-jdk17"
+    const val JDK8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     const val JWT = "io.jsonwebtoken:jjwt:${DependencyVersions.JWT}"
     const val MYSQL = "mysql:mysql-connector-java"
     const val REDIS = "org.springframework.boot:spring-boot-starter-data-redis"
