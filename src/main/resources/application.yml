@@ -1,1 +1,46 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
 
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  redis:
+    port: ${REDIS_PORT}
+    host: ${REDIS_HOST}
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  main:
+    allow-bean-definition-overriding: true
+
+jwt:
+  secret_key: ${JWT_SECRET_KEY}
+  access_exp: ${JWT_ACCESS_EXP}
+  refresh_exp: ${JWT_REFRESH_EXP}
+  header: ${JWT_HEADER}
+  prefix: ${JWT_PREFIX}
+
+cloud:
+  aws:
+    s3:
+      prefix: ${AWS_S3_PREFIX}
+      bucket: ${AWS_S3_BUCKET}
+      base-image-url: ${AWS_S3_URL}
+    region:
+      static: ${AWS_S3_REGION}
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_S3_ACCESS}
+      secret-key: ${AWS_S3_SECRET}
+server:
+  port: 9090
