@@ -24,20 +24,12 @@ class User(
     val password: String,
 
     @field:NotNull
-    @field:Length(max = 11)
-    val phoneNumber: String,
-
-    @field:NotNull
     @field:Length(max = 6)
     val name: String,
 
     @field:NotNull
     @field:Length(max = 3)
     val age: Int,
-
-    @field:NotNull
-    @field:Length(max = 10)
-    val address: String,
 
     @field:Length(max = 2000)
     val profile: String?,
