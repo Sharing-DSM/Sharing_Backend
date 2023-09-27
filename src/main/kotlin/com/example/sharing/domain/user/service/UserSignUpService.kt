@@ -20,13 +20,12 @@ class UserSignUpService(
         }
 
         user = User(
-            null,
+            userSignUpRequest.id,
             userSignUpRequest.accountId,
             userSignUpRequest.password,
             userSignUpRequest.name,
             userSignUpRequest.age,
-            userSignUpRequest.profile,
-            userSignUpRequest.sex
+            userSignUpRequest.profile
         )
 
         userRepository.save(user)

@@ -4,7 +4,6 @@ import com.example.sharing.domain.user.presentation.dto.request.UserSignUpReques
 import com.example.sharing.domain.user.service.UserSignUpService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import javax.validation.Valid
 
 @RequestMapping
 @RestController
@@ -15,7 +14,7 @@ class UserController(
     // 회원가입
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    fun signUp(@RequestBody request: UserSignUpRequest?): String {
+    fun signUp(@RequestBody request: UserSignUpRequest): String {
         return userSignUpService.signUp(request)
     }
 }
