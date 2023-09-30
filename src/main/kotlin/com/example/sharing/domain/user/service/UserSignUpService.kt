@@ -2,34 +2,34 @@ package com.example.sharing.domain.user.service
 
 import com.example.sharing.domain.user.domain.User
 import com.example.sharing.domain.user.domain.repository.UserRepository
+import com.example.sharing.domain.user.exception.AlreadyUserAccountIdExistsException
 import com.example.sharing.domain.user.presentation.dto.request.UserSignUpRequest
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
-@Transactional
 @Service
 class UserSignUpService(
     private val userRepository: UserRepository,
+    private val passwordEncoder: PasswordEncoder
 ) {
-
-    fun signUp(userSignUpRequest: UserSignUpRequest): String {
-        var user: User? = userRepository
-            .findByAccountId(userSignUpRequest.accountId)
-        if (user != null) {
-            return "이미 있는 id"
+    @Transactional
+    fun excute(request: UserSignUpRequest) {
+        if (userRepository.existsByAccountId(request.accountId)) {
+            throw AlreadyUserAccountIdExistsException.EXCEPTION
         }
 
-        user = User(
-            userSignUpRequest.id,
-            userSignUpRequest.accountId,
-            userSignUpRequest.password,
-            userSignUpRequest.name,
-            userSignUpRequest.age,
-            userSignUpRequest.profile
+        userRepository.save(
+            User(
+                id = UUID.randomUUID(),
+                accountId = request.accountId,
+                password = passwordEncoder.encode(request.password),
+                name = request.name,
+                age = request.age,
+                profile = null
+            )
         )
-
-        userRepository.save(user)
-
-        return "회원가입 완료"
     }
 }

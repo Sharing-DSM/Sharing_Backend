@@ -1,15 +1,11 @@
 package com.example.sharing.domain.user.presentation.dto.request
 
-import com.example.sharing.global.entity.BaseUUIDEntity
 import org.hibernate.validator.constraints.Length
-import java.util.*
 import javax.validation.constraints.NotNull
 
 data class UserSignUpRequest (
-    override val id: UUID,
-
     @field:NotNull
-    @field:Length(max = 15)
+    @field:Length(max = 15, message = "15자까지 가능합니다")
     val accountId: String,
 
     @field:NotNull
@@ -21,10 +17,9 @@ data class UserSignUpRequest (
     val name: String,
 
     @field:NotNull
-    @field:Length(max = 3)
+    @field:Length(max = 3, message = "3자리 숫자가 넘어가선 안됩니다.")
     val age: Int,
 
     @field:Length(max = 2000)
     val profile: String?,
-
-) : BaseUUIDEntity()
+)
