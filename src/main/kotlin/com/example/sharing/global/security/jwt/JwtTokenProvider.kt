@@ -44,7 +44,7 @@ class JwtTokenProvider(
     }
 
     private fun generateToken(accountId: String, expiration: Long): String {
-        return "Bearer " + Jwts.builder().signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
+        return jwtProperties.prefix + Jwts.builder().signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
             .setSubject(accountId)
             .setHeaderParam("typ", "access")
             .setIssuedAt(Date())
@@ -60,7 +60,7 @@ class JwtTokenProvider(
 
     fun parseToken(bearerToken: String?): String? {
         return if (bearerToken != null && bearerToken.startsWith(jwtProperties.prefix)) {
-            return bearerToken.replace("Bearer ", "")
+            return bearerToken.replace(jwtProperties.prefix, "")
         } else null
     }
 
