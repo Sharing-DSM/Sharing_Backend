@@ -20,7 +20,4 @@ data class UserSignUpRequest (
     @field:NotNull
     @field:Length(max = 3, message = "3자리 숫자가 넘어가선 안됩니다.")
     val age: Int,
-
-    @field:Length(max = 2000)
-    val profile: String?,
 )
