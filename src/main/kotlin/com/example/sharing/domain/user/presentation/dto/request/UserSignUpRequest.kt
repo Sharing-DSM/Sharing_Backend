@@ -1,6 +1,5 @@
 package com.example.sharing.domain.user.presentation.dto.request
 
-import org.hibernate.validator.constraints.Length
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
@@ -20,7 +19,6 @@ data class UserSignUpRequest (
     @field:Size(max = 5, message = "name은 5자 이하여야 합니다.")
     var name: String,
 
-    @field:NotNull
-    @field:Length(max = 3, message = "3자리 숫자가 넘어가선 안됩니다.")
+    @field:NotNull(message = "age는 Null를 허용하지 않습니다.")
     val age: Int,
 )

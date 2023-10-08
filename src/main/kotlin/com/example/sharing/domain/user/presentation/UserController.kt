@@ -17,7 +17,7 @@ class UserController(
 ) {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    fun signUp(@RequestBody request: UserSignUpRequest) {
+    fun signUp(@RequestBody @Valid request: UserSignUpRequest) {
         userSignUpService.excute(request)
     }
 
