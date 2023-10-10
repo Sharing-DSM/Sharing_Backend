@@ -32,10 +32,6 @@ class Feed(
     val content: String,
 
     @field:NotNull
-    @field:Length(max = 255)
-    val address: String,
-
-    @field:NotNull
     val recruitment: Int,
 
     @field:NotNull
