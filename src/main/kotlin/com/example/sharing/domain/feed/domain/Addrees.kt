@@ -1,18 +1,22 @@
-package com.example.sharing.domain.user.domain
+package com.example.sharing.domain.feed.domain
 
+import com.example.sharing.domain.feed.domain.Feed
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType.LAZY
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.validation.constraints.NotNull
 
-@Entity(name = "tbl_user")
+@Entity(name = "tbl_address")
 @DynamicInsert
-class User(
+class Addrees(
     @Id
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
@@ -20,20 +24,21 @@ class User(
     val id: UUID,
 
     @field:NotNull
-    @field:Length(max = 15)
-    val accountId: String,
+    @field:Length(max = 100)
+    val roadAddrees: String,
 
     @field:NotNull
-    @field:Length(max = 60)
-    val password: String,
+    @field:Length(max = 100)
+    val x: String,
 
     @field:NotNull
-    @field:Length(max = 6)
-    val name: String,
+    @field:Length(max = 100)
+    val y: String,
 
-    @field:NotNull
-    val age: Int,
-
-    @field:Length(max = 2000)
-    val profile: String?,
-)
+    feed: Feed
+) {
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "feed_id", columnDefinition = "BINARY(16)", nullable = false)
+    var feed = feed
+        protected  set
+}
