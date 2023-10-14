@@ -3,7 +3,7 @@ package com.example.sharing.domain.feed.presentation.dto.request
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
-data class FeedUpdateRequest (
+data class UpdateFeedRequest (
     @field:NotBlank(message = "title는 Null를 허용하지 않습니다.")
     @field:Size(max = 20, message = "title은 20자 이하여야 합니다.")
     var title: String,

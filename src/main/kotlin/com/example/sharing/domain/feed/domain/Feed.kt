@@ -1,6 +1,5 @@
 package com.example.sharing.domain.feed.domain
 
-import com.example.sharing.domain.feed.presentation.dto.request.FeedUpdateRequest
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
@@ -48,10 +47,10 @@ class Feed(
     var user = user
         protected  set
 
-    fun updateFeed(feedUpdateRequest: FeedUpdateRequest) {
-        title = feedUpdateRequest.title
-        content = feedUpdateRequest.content
-        recruitment = feedUpdateRequest.recruitment
-        volunteerTime = feedUpdateRequest.volunteerTime
+    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int) {
+        this.title = title
+        this.content = content
+        this.recruitment = recruitment
+        this.volunteerTime = volunteerTime
     }
 }
