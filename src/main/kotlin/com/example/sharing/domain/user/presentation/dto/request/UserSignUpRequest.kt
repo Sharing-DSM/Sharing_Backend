@@ -7,7 +7,7 @@ import javax.validation.constraints.Size
 
 data class UserSignUpRequest (
     @field:NotBlank(message = "account_id는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
-    @field:Size(min = 5, max = 15, message = "account_id는 8자 이상 20자 이하여야 합니다.")
+    @field:Size(min = 5, max = 15, message = "account_id는 8자 이상 15자 이하여야 합니다.")
     var accountId: String,
 
     @field:NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")

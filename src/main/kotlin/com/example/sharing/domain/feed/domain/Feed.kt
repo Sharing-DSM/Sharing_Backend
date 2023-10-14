@@ -4,14 +4,15 @@ import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
-import java.util.UUID
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType.LAZY
+import javax.persistence.FetchType.*
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_feed")
@@ -23,13 +24,27 @@ class Feed(
     @Column(columnDefinition = "BINARY(16)")
     val id: UUID,
 
-    @field:NotNull
+    @field:NotBlank
     @field:Length(max = 20)
     val title: String,
 
-    @field:NotNull
+    @field:NotBlank
     @field:Length(max = 2000)
     val content: String,
+
+    @field:NotNull
+    @field:Length(max = 100)
+    val addressName: String,
+
+    @field:NotNull
+    @field:Length(max = 100)
+    val roadAddressName: String,
+
+    @field:NotNull
+    val x: Double,
+
+    @field:NotNull
+    val y: Double,
 
     @field:NotNull
     val recruitment: Int,
