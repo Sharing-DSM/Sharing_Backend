@@ -1,5 +1,6 @@
 package com.example.sharing.domain.feed.domain
 
+import com.example.sharing.domain.feed.presentation.dto.request.FeedUpdateRequest
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
@@ -21,21 +22,21 @@ class Feed(
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "BINARY(16)")
-    val id: UUID,
+    var id: UUID,
 
     @field:NotNull
     @field:Length(max = 20)
-    val title: String,
+    var title: String,
 
     @field:NotNull
     @field:Length(max = 2000)
-    val content: String,
+    var content: String,
 
     @field:NotNull
-    val recruitment: Int,
+    var recruitment: Int,
 
     @field:NotNull
-    val volunteerTime: Int,
+    var volunteerTime: Int,
 
     @field:NotNull
     val views: Int,
@@ -46,4 +47,11 @@ class Feed(
     @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
     var user = user
         protected  set
+
+    fun updateFeed(feedUpdateRequest: FeedUpdateRequest) {
+        title = feedUpdateRequest.title
+        content = feedUpdateRequest.content
+        recruitment = feedUpdateRequest.recruitment
+        volunteerTime = feedUpdateRequest.volunteerTime
+    }
 }
