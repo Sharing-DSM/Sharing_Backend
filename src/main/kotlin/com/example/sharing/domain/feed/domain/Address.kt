@@ -1,22 +1,21 @@
 package com.example.sharing.domain.feed.domain
 
-import com.example.sharing.domain.feed.domain.Feed
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
-import java.util.*
+import java.util.UUID
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType.LAZY
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.OneToOne
 import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_address")
 @DynamicInsert
-class Addrees(
+class Address(
     @Id
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
@@ -25,7 +24,11 @@ class Addrees(
 
     @field:NotNull
     @field:Length(max = 100)
-    val roadAddrees: String,
+    val addressName: String,
+
+    @field:NotNull
+    @field:Length(max = 100)
+    val roadAddressName: String,
 
     @field:NotNull
     @field:Length(max = 100)
@@ -37,7 +40,7 @@ class Addrees(
 
     feed: Feed
 ) {
-    @ManyToOne(fetch = LAZY)
+    @OneToOne(fetch = LAZY)
     @JoinColumn(name = "feed_id", columnDefinition = "BINARY(16)", nullable = false)
     var feed = feed
         protected  set

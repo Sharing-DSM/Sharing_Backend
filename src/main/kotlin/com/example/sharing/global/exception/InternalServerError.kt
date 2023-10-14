@@ -1,8 +1,11 @@
 package com.example.sharing.global.exception
 
-import com.example.sharing.global.error.exception.ErrorCode
+import com.example.sharing.global.error.exception.ErrorCode.INTERNAL_SERVER_ERROR
 import com.example.sharing.global.error.exception.SharingException
 
-object InternalServerError : SharingException(ErrorCode.INTENAL_SERVER_ERROR) {
-    val EXCEPTION = InternalServerError
+class InternalServerError : SharingException(INTERNAL_SERVER_ERROR) {
+    companion object {
+        @JvmField
+        val EXCEPTION = InternalServerError()
+    }
 }
