@@ -5,7 +5,7 @@ import com.example.sharing.domain.user.domain.repository.UserRepository
 import com.example.sharing.domain.user.exception.UserNotFoundException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
-import java.util.UUID
+import java.util.*
 
 @Component
 class UserFacade(
@@ -13,6 +13,7 @@ class UserFacade(
 ) {
     fun getCurrentUser(): User {
         val accountId: String = SecurityContextHolder.getContext().authentication.name
+        println(accountId)
         return getByAccountId(accountId)
     }
 
@@ -21,7 +22,7 @@ class UserFacade(
     }
 
     fun getByAccountId(accountId: String): User {
-        return userRepository.findByAccountId(accountId) ?: throw UserNotFoundException.EXCEPTION
+        return userRepository.findByAccountId(accountId)?: throw UserNotFoundException.EXCEPTION
     }
 
     fun getUserId(): UUID {
