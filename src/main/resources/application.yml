@@ -45,3 +45,8 @@ cloud:
     credentials:
       access-key: ${AWS_S3_ACCESS}
       secret-key: ${AWS_S3_SECRET}
+server:
+  port: 9999
+
+kakao:
+  api-key: ${KAKAO_API_KEY}
