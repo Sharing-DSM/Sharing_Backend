@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 =======
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
+import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
+import com.example.sharing.domain.feed.service.SearchAddressService
 import org.springframework.http.HttpStatus.*
 >>>>>>> ⚡️ :: 게시글 작성 api 구현
 import org.springframework.web.bind.annotation.PostMapping
@@ -25,6 +28,10 @@ import org.springframework.web.bind.annotation.RestController
 <<<<<<< main
 import java.util.*
 import javax.validation.Valid
+<<<<<<< main
+=======
+import org.springframework.web.bind.annotation.GetMapping
+>>>>>>> ♻️ :: 컨플릭트 해결
 
 @RequestMapping("/feeds")
 @RestController
