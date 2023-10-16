@@ -1,6 +1,7 @@
 package com.example.sharing.global.security
 
 import com.example.sharing.global.config.FilterConfig
+import com.example.sharing.global.security.jwt.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
+    private val jwtTokenProvider: JwtTokenProvider
 ) {
     @Bean
     @Throws(Exception::class)
@@ -33,7 +35,7 @@ class SecurityConfig(
             .antMatchers("/**").permitAll()
             .anyRequest().permitAll()
 
-            .and().apply(FilterConfig(objectMapper))
+            .and().apply(FilterConfig(objectMapper, jwtTokenProvider))
             .and().build()
     }
 
