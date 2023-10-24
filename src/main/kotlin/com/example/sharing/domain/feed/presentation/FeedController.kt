@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 
-@RequestMapping("/feed")
+@RequestMapping("/feeds")
 @RestController
 class FeedController(
   private val createFeedService: CreateFeedService,
