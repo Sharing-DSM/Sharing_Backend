@@ -22,7 +22,7 @@ class Feed(
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "BINARY(16)")
-    var id: UUID,
+    val id: UUID,
 
     @field:NotBlank
     @field:Length(max = 20)
@@ -40,13 +40,13 @@ class Feed(
     val roadAddressName: String,
 
     @field:NotNull
-    val x: Double,
+    var x: Double,
 
     @field:NotNull
     val y: Double,
 
     @field:NotNull
-    val recruitment: Int,
+    var recruitment: Int,
 
     @field:NotNull
     var volunteerTime: Int,
