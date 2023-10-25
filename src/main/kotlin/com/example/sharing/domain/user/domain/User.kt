@@ -34,6 +34,12 @@ class User(
     @field:NotNull
     val age: Int,
 
+    var interestArea: String?,
+
     @field:Length(max = 2000)
     val profile: String?,
-)
+) {
+    fun setInterestArea(interestArea: String?) {
+        this.interestArea = interestArea
+    }
+}
