@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 import javax.validation.Valid
 
-
 @RequestMapping("/feeds")
 @RestController
 class FeedController(
