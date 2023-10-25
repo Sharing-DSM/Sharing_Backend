@@ -31,7 +31,7 @@ class FeedController(
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
         createFeedService.execute(request)
     }
-
+    
     @ResponseStatus(NO_CONTENT)
     @DeleteMapping("/{feed-id}")
     fun deleteFeed(@PathVariable("feed-id") id: UUID) {

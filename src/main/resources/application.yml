@@ -45,3 +45,6 @@ cloud:
     credentials:
       access-key: ${AWS_S3_ACCESS}
       secret-key: ${AWS_S3_SECRET}
+
+kakao:
+  api-key: ${KAKAO_API_KEY}
