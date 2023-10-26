@@ -30,7 +30,7 @@ class UserSignUpService(
                 name = request.name,
                 age = request.age,
                 profile = null,
-                interest_area = null
+                interestArea = null
             )
         )
     }

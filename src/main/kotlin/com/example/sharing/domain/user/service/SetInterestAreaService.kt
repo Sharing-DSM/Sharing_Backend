@@ -11,6 +11,6 @@ class SetInterestAreaService(
     @Transactional
     fun execute(interestArea: String) {
         val user = userFacade.getCurrentUser()
-        user.setInterestArea(interestArea)
+        user.updateInterestArea(interestArea)
     }
 }

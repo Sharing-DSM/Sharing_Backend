@@ -39,7 +39,7 @@ class User(
     @field:Length(max = 2000)
     val profile: String?,
 ) {
-    fun setInterestArea(interestArea: String?) {
+    fun updateInterestArea(interestArea: String?) {
         this.interestArea = interestArea
     }
 }
