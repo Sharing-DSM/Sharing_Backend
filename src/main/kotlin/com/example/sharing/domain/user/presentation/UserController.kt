@@ -29,7 +29,7 @@ class UserController(
     }
 
     @ResponseStatus(NO_CONTENT)
-    @PostMapping
+    @PutMapping
     fun setInterestArea(@RequestParam("interest-area") interestArea: String) {
         setInterestAreaService.execute(interestArea)
     }
