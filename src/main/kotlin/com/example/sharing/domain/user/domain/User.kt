@@ -21,23 +21,23 @@ class User(
 
     @field:NotNull
     @field:Length(max = 15)
-    val accountId: String,
+    var accountId: String,
 
     @field:NotNull
     @field:Length(max = 60)
-    val password: String,
+    var password: String,
 
     @field:NotNull
     @field:Length(max = 6)
-    val name: String,
+    var name: String,
 
     @field:NotNull
-    val age: Int,
+    var age: Int,
 
     var interestArea: String?,
 
     @field:Length(max = 2000)
-    val profile: String?,
+    var profile: String?,
 ) {
     fun updateInterestArea(interestArea: String?) {
         this.interestArea = interestArea
