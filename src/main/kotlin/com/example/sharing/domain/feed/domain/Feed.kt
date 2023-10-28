@@ -40,25 +40,7 @@ class Feed(
     val roadAddressName: String,
 
     @field:NotNull
-<<<<<<< main
     var x: Double,
-=======
-    @field:Length(max = 100)
-    val addressName: String,
-
-    @field:NotNull
-    @field:Length(max = 100)
-    val roadAddressName: String,
-
-    @field:NotNull
-    val x: Double,
-
-    @field:NotNull
-    val y: Double,
-
-    @field:NotNull
-    val recruitment: Int,
->>>>>>> ⚡️ :: 게시글 작성 api 구현
 
     @field:NotNull
     val y: Double,
