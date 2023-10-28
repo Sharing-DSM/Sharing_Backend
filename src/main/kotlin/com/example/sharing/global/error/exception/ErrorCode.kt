@@ -12,6 +12,7 @@ enum class ErrorCode(
     FEIGN_UNAUTHORIZED(401, "Feign Unauthorized"),
 
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
+    NOT_VALID_USER(403, "Not Valid User"),
 
     NOT_VALID_USER(403, "Not Valid User"),
 
