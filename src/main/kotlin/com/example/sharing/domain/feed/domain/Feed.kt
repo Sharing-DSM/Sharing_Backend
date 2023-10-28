@@ -26,13 +26,12 @@ class Feed(
 
     @field:NotBlank
     @field:Length(max = 20)
-    val title: String,
+    var title: String,
 
     @field:NotBlank
     @field:Length(max = 2000)
-    val content: String,
+    var content: String,
 
-    @field:NotNull
     @field:Length(max = 100)
     val addressName: String,
 
@@ -41,16 +40,16 @@ class Feed(
     val roadAddressName: String,
 
     @field:NotNull
-    val x: Double,
+    var x: Double,
 
     @field:NotNull
     val y: Double,
 
     @field:NotNull
-    val recruitment: Int,
+    var recruitment: Int,
 
     @field:NotNull
-    val volunteerTime: Int,
+    var volunteerTime: Int,
 
     @field:NotNull
     val views: Int,
@@ -61,4 +60,11 @@ class Feed(
     @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
     var user = user
         protected  set
+
+    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int) {
+        this.title = title
+        this.content = content
+        this.recruitment = recruitment
+        this.volunteerTime = volunteerTime
+    }
 }
