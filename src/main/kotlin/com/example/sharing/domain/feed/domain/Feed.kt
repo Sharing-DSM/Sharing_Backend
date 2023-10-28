@@ -33,11 +33,11 @@ class Feed(
     var content: String,
 
     @field:Length(max = 100)
-    val addressName: String,
+    var addressName: String,
 
     @field:NotNull
     @field:Length(max = 100)
-    val roadAddressName: String,
+    var roadAddressName: String,
 
     @field:NotNull
     var x: Double,
@@ -52,7 +52,7 @@ class Feed(
     var volunteerTime: Int,
 
     @field:NotNull
-    val views: Int,
+    var views: Int,
 
     user: User
 ) {

@@ -7,16 +7,7 @@ import javax.validation.constraints.Size
 
 data class UserSignUpRequest (
     @field:NotBlank(message = "account_id는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
-<<<<<<< main
-<<<<<<< main
     @field:Size(min = 5, max = 15, message = "account_id는 5자 이상 15자 이하여야 합니다.")
-=======
-    @field:Size(min = 5, max = 15, message = "account_id는 8자 이상 15자 이하여야 합니다.")
->>>>>>> ⚡️ :: 게시글 작성 api 구현
-=======
-    @field:Size(min = 5, max = 15, message = "account_id는 5자 이상 15자 이하여야 합니다.")
->>>>>>> ♻️ :: message 수정
-    var accountId: String,
 
     @field:NotBlank(message = "password는 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     @field:Pattern(regexp = "(?=.*[a-z])(?=.*[0-9])(?=.*[!/?@])[a-zA-Z0-9!/" + "?@]{8,20}$",

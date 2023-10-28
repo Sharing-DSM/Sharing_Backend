@@ -14,8 +14,6 @@ enum class ErrorCode(
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
     NOT_VALID_USER(403, "Not Valid User"),
 
-    NOT_VALID_USER(403, "Not Valid User"),
-
     USER_NOT_FOUND(404, "User Not Found"),
     FEED_NOT_FOUND(404, "Feed Not Found"),
 
