@@ -28,7 +28,7 @@ class ExceptionFilter(
             exception.printStackTrace()
             when (exception) {
                 is SharingException -> writeErrorCode(exception, response)
-                else -> writeErrorCode(InternalServerError, response)
+                else -> writeErrorCode(InternalServerError.EXCEPTION, response)
             }
         }
     }
