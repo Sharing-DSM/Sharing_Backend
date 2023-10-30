@@ -29,6 +29,7 @@ class CreateFeedService(
                 recruitment = request.recruitment,
                 volunteerTime = request.volunteerTime,
                 views = 0,
+                type = request.type,
                 user = user
             )
         )

@@ -1,5 +1,6 @@
 package com.example.sharing.domain.feed.presentation.dto.request
 
+import com.example.sharing.domain.feed.domain.type.Type
 import org.hibernate.validator.constraints.Length
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
@@ -21,6 +22,9 @@ data class CreateFeedRequest(
     @field:NotNull
     @field:Length(max = 100)
     val roadAddressName: String,
+
+    @field:NotBlank
+    val type: Type,
 
     @field:NotNull
     val x: Double,
