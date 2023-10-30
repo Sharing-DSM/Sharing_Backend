@@ -29,7 +29,6 @@ class FeedController(
   private val searchAddressService: SearchAddressService,
   private val createTagService: CreateTagService,
 ) {
-    
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
