@@ -1,10 +1,12 @@
 package com.example.sharing.domain.feed.presentation
 
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
+import com.example.sharing.domain.feed.presentation.dto.request.CreateTagRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.CreateTagService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.*
@@ -25,11 +27,18 @@ class FeedController(
   private val updateFeedService: UpdateFeedService,
   private val createFeedService: CreateFeedService,
   private val searchAddressService: SearchAddressService,
+  private val createTagService: CreateTagService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
         createFeedService.execute(request)
+    }
+
+    @ResponseStatus(CREATED)
+    @PostMapping("/{feed-id}")
+    fun createTag(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: CreateTagRequest) {
+        createTagService.execute(feedId, request)
     }
     
     @ResponseStatus(NO_CONTENT)
