@@ -8,7 +8,6 @@ import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
-import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -30,7 +29,6 @@ class FeedController(
   private val deleteFeedService: DeleteFeedService,
   private val searchAddressService: SearchAddressService,
 ) {
-    
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
