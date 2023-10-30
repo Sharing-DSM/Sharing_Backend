@@ -3,7 +3,7 @@ package com.example.sharing.domain.feed.domain
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
-import java.util.UUID
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.FetchType.*
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.validation.constraints.NotBlank
 
-@Entity(name = "tbl_name")
+@Entity(name = "tbl_tag")
 @DynamicInsert
 class Tag(
     @Id
