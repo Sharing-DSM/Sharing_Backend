@@ -3,9 +3,11 @@ package com.example.sharing.domain.feed.presentation
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
@@ -28,6 +30,7 @@ class FeedController(
   private val createFeedService: CreateFeedService,
   private val searchAddressService: SearchAddressService,
   private val queryFeedDetailService: QueryFeedDetailService,
+  private val queryFeedByViewsService: QueryFeedByViewsService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -49,5 +52,10 @@ class FeedController(
     @GetMapping("/{feed-id}")
     fun getFeedDetail(@PathVariable ("feed-id") feedId: UUID): QueryFeedDetailResponse {
         return queryFeedDetailService.execute(feedId)
+    }
+
+    @GetMapping
+    fun getFeedByViews(): List<FeedElement> {
+        return queryFeedByViewsService.execute()
     }
 }
