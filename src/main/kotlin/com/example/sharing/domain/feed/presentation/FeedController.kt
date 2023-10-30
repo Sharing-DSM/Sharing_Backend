@@ -11,7 +11,10 @@ import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.GetMapping
+<<<<<<< refs/remotes/origin/main
 import org.springframework.web.bind.annotation.PatchMapping
+=======
+>>>>>>> ⚡️ :: tag 생성 api 작성
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,7 +32,6 @@ class FeedController(
   private val searchAddressService: SearchAddressService,
   private val createTagService: CreateTagService,
 ) {
-    
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
@@ -41,12 +43,18 @@ class FeedController(
     fun createTag(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: CreateTagRequest) {
         createTagService.execute(feedId, request)
     }
+<<<<<<< HEAD
+=======
+<<<<<<< refs/remotes/origin/main
+>>>>>>> main
     
     @ResponseStatus(NO_CONTENT)
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable ("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
     }
+=======
+>>>>>>> ⚡️ :: tag 생성 api 작성
     
     @GetMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
