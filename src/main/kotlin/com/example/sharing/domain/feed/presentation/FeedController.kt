@@ -7,6 +7,7 @@ import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.SearchAddressService
@@ -31,6 +32,7 @@ class FeedController(
   private val searchAddressService: SearchAddressService,
   private val queryFeedDetailService: QueryFeedDetailService,
   private val queryFeedByViewsService: QueryFeedByViewsService,
+  private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -55,7 +57,12 @@ class FeedController(
     }
 
     @GetMapping
-    fun getFeedByViews(): List<FeedElement> {
+    fun getFeedListByViews(): List<FeedElement> {
         return queryFeedByViewsService.execute()
+    }
+
+    @GetMapping("/interest-area")
+    fun getFeedListByInterestArea(): List<FeedElement> {
+        return queryFeedByInterestAreaService.execute()
     }
 }

@@ -9,4 +9,5 @@ import java.util.*
 @Repository
 interface FeedRepository: JpaRepository<Feed, UUID> {
     fun findAllByOrderByViewsDesc(): List<FeedElement>
+    fun findAllByAddressNameContaining(addressName: String): List<FeedElement>
 }
