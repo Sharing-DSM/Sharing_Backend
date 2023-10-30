@@ -43,7 +43,10 @@ class FeedController(
     fun createTag(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: CreateTagRequest) {
         createTagService.execute(feedId, request)
     }
+<<<<<<< HEAD
+=======
 <<<<<<< refs/remotes/origin/main
+>>>>>>> main
     
     @ResponseStatus(NO_CONTENT)
     @PatchMapping("/{feed-id}")
