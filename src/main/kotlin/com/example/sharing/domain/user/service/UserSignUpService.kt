@@ -17,7 +17,7 @@ class UserSignUpService(
     private val passwordEncoder: PasswordEncoder
 ) {
     @Transactional
-    fun excute(request: UserSignUpRequest) {
+    fun execute(request: UserSignUpRequest) {
         if (userFacade.checkUserExist(request.accountId)) {
             throw AlreadyUserAccountIdExistsException.EXCEPTION
         }
