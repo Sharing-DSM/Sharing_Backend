@@ -17,6 +17,8 @@ class QueryFeedDetailService(
     fun execute(feedId: UUID): QueryFeedDetailResponse {
         val feed = feedFacade.getByFeedId(feedId)
 
+        feed.addViews(feed.views++)
+
         return QueryFeedDetailResponse(
             feedId = feed.id,
             title = feed.title,
