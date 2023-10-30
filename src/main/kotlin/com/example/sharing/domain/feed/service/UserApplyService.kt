@@ -1,8 +1,7 @@
-package com.example.sharing.domain.user.service
+package com.example.sharing.domain.feed.service
 
 import com.example.sharing.domain.feed.domain.repository.FeedRepository
 import com.example.sharing.domain.feed.exception.FeedNotFoundException
-import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.lang.Boolean.TRUE

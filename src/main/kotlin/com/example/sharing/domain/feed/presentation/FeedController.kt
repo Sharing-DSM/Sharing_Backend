@@ -4,10 +4,7 @@ import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedReques
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
-import com.example.sharing.domain.feed.service.DeleteFeedService
-import com.example.sharing.domain.feed.service.CreateFeedService
-import com.example.sharing.domain.feed.service.SearchAddressService
-import com.example.sharing.domain.feed.service.UpdateFeedService
+import com.example.sharing.domain.feed.service.*
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -24,10 +21,11 @@ import javax.validation.Valid
 @RequestMapping("/feeds")
 @RestController
 class FeedController(
-  private val updateFeedService: UpdateFeedService,
-  private val createFeedService: CreateFeedService,
-  private val deleteFeedService: DeleteFeedService,
-  private val searchAddressService: SearchAddressService,
+    private val updateFeedService: UpdateFeedService,
+    private val createFeedService: CreateFeedService,
+    private val deleteFeedService: DeleteFeedService,
+    private val searchAddressService: SearchAddressService,
+    private val userApplyService: UserApplyService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -45,6 +43,11 @@ class FeedController(
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable ("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
+    }
+
+    @PatchMapping("/{feed-id}")
+    fun apply(@PathVariable ("feed-id") feedId: UUID) {
+        userApplyService.execute(feedId)
     }
     
     @GetMapping("/address")
