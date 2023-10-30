@@ -4,7 +4,9 @@ import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedReques
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
+import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.*
@@ -25,6 +27,7 @@ class FeedController(
   private val updateFeedService: UpdateFeedService,
   private val createFeedService: CreateFeedService,
   private val searchAddressService: SearchAddressService,
+  private val queryFeedDetailService: QueryFeedDetailService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -41,5 +44,10 @@ class FeedController(
     @GetMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
         return searchAddressService.execute(request)
+    }
+
+    @GetMapping("/{feed-id}")
+    fun getFeedDetail(@PathVariable ("feed-id") feedId: UUID): QueryFeedDetailResponse {
+        return queryFeedDetailService.execute(feedId)
     }
 }
