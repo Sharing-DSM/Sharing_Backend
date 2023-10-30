@@ -23,7 +23,7 @@ data class CreateFeedRequest(
     @field:Length(max = 100)
     val roadAddressName: String,
 
-    @field:NotBlank
+    @field:NotNull
     val type: Type,
 
     @field:NotNull
