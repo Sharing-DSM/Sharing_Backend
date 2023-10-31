@@ -3,7 +3,6 @@ package com.example.sharing.domain.user.presentation
 import com.example.sharing.domain.user.presentation.dto.request.UserLoginRequest
 import com.example.sharing.domain.user.presentation.dto.request.UserSignUpRequest
 import com.example.sharing.domain.user.presentation.dto.response.TokenResponse
-import com.example.sharing.domain.feed.service.UserApplyService
 import com.example.sharing.domain.user.service.UserLoginService
 import com.example.sharing.domain.user.service.UserSignUpService
 import org.springframework.http.HttpStatus
