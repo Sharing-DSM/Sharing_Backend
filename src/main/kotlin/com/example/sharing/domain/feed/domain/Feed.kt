@@ -54,9 +54,6 @@ class Feed(
     @field:NotNull
     var views: Int,
 
-    @field:NotNull
-    var apply: Boolean,
-
     user: User
 ) {
     @ManyToOne(fetch = LAZY)
