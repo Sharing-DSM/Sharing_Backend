@@ -45,7 +45,8 @@ class FeedController(
         updateFeedService.execute(feedId, request)
     }
 
-    @PatchMapping("/apply/{feed-id}")
+    @ResponseStatus(CREATED)
+    @PostMapping("/{feed-id}")
     fun apply(@PathVariable ("feed-id") feedId: UUID) {
         userApplyService.execute(feedId)
     }
