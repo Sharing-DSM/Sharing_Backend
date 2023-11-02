@@ -16,6 +16,7 @@ class CreateFeedService(
     @Transactional
     fun execute(request: CreateFeedRequest) {
         val user = userFacade.getCurrentUser()
+
         feedRepository.save(
             Feed(
                 id = UUID.randomUUID(),
@@ -29,6 +30,7 @@ class CreateFeedService(
                 volunteerTime = request.volunteerTime,
                 views = 0,
                 apply = false,
+                type = request.type,
                 user = user
             )
         )

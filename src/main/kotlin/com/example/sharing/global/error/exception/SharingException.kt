@@ -9,7 +9,4 @@ open class SharingException(
     override val message: String
         get() = errorCode.message
 
-    override fun fillInStackTrace(): Throwable {
-        return this
-    }
 }

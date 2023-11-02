@@ -3,8 +3,15 @@ package com.example.sharing.domain.feed.presentation
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
-import com.example.sharing.domain.feed.service.*
+import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
+import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
+import com.example.sharing.domain.feed.service.QueryFeedByViewsService
+import com.example.sharing.domain.feed.service.QueryFeedDetailService
+import com.example.sharing.domain.feed.service.SearchAddressService
+import com.example.sharing.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,6 +33,9 @@ class FeedController(
     private val deleteFeedService: DeleteFeedService,
     private val searchAddressService: SearchAddressService,
     private val userApplyService: UserApplyService,
+  private val queryFeedDetailService: QueryFeedDetailService,
+  private val queryFeedByViewsService: QueryFeedByViewsService,
+  private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -54,5 +64,20 @@ class FeedController(
     @GetMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
         return searchAddressService.execute(request)
+    }
+
+    @GetMapping("/{feed-id}")
+    fun getFeedDetail(@PathVariable ("feed-id") feedId: UUID): QueryFeedDetailResponse {
+        return queryFeedDetailService.execute(feedId)
+    }
+
+    @GetMapping
+    fun getFeedListByViews(): List<FeedElement> {
+        return queryFeedByViewsService.execute()
+    }
+
+    @GetMapping("/interest-area")
+    fun getFeedListByInterestArea(): List<FeedElement> {
+        return queryFeedByInterestAreaService.execute()
     }
 }
