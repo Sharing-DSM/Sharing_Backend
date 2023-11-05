@@ -46,7 +46,7 @@ class FeedController(
         updateFeedService.execute(feedId, request)
     }
     
-    @GetMapping("/address")
+    @PostMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
         return searchAddressService.execute(request)
     }
