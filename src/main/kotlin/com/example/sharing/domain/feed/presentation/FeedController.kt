@@ -84,6 +84,9 @@ class FeedController(
     }
     
 <<<<<<< main
+<<<<<<< main
+=======
+>>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
     @ResponseStatus(NO_CONTENT)
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable ("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
