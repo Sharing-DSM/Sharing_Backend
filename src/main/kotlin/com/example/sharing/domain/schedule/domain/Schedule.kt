@@ -3,6 +3,7 @@ package com.example.sharing.domain.schedule.domain
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
+import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.NotNull
@@ -21,11 +22,5 @@ class Schedule (
     val title: String,
 
     @field:NotNull
-    val year: String,
-
-    @field:NotNull
-    val month: String,
-
-    @field:NotNull
-    val day: String
+    val date: LocalDate
 )
