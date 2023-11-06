@@ -6,12 +6,6 @@ import java.util.UUID
 
 data class ApplyId (
     var userId: UUID,
-    var feedId: UUID?
-) : Serializable {
+    var feedId: UUID
 
-    fun applyId(userId: UUID, feedId: UUID) {
-        this.userId = userId
-        this.feedId = feedId
-    }
-
-}
+) : Serializable
