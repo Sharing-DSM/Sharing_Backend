@@ -5,6 +5,7 @@ import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequ
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.service.DeleteFeedService
+import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
@@ -41,7 +42,7 @@ class FeedController(
         deleteFeedService.execute(id)
     }
     
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(NO_CONTENT)
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable ("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
