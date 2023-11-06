@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
+import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
@@ -56,6 +57,7 @@ class Schedule (
     val title: String,
 
     @field:NotNull
+<<<<<<< main
     val year: String,
 
     @field:NotNull
@@ -65,3 +67,7 @@ class Schedule (
     val day: String
 )
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
+=======
+    val date: LocalDate
+)
+>>>>>>> ♻️ :: LocalDate 사용
