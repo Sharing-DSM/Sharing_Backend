@@ -5,6 +5,7 @@ import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequ
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
+import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
@@ -14,6 +15,7 @@ import com.example.sharing.domain.feed.service.QueryFeedListByMapService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import org.springframework.http.HttpStatus.*
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -31,6 +33,7 @@ import javax.validation.Valid
 class FeedController(
   private val updateFeedService: UpdateFeedService,
   private val createFeedService: CreateFeedService,
+  private val deleteFeedService: DeleteFeedService,
   private val searchAddressService: SearchAddressService,
   private val queryFeedDetailService: QueryFeedDetailService,
   private val queryFeedByViewsService: QueryFeedByViewsService,
@@ -41,6 +44,12 @@ class FeedController(
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
         createFeedService.execute(request)
+    }
+    
+    @ResponseStatus(NO_CONTENT)
+    @DeleteMapping("/{feed-id}")
+    fun deleteFeed(@PathVariable("feed-id") id: UUID) {
+        deleteFeedService.execute(id)
     }
     
     @ResponseStatus(NO_CONTENT)
