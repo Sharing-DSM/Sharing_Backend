@@ -6,6 +6,7 @@ import com.example.sharing.domain.schedule.presentation.dto.request.CreateSchedu
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDate
 import java.util.*
 
 @Service
@@ -18,9 +19,11 @@ class CreateScheduleService (
             Schedule(
                 id = UUID.randomUUID(),
                 title = request.title,
-                year = request.year,
-                month = request.month,
-                day = request.day
+                date = LocalDate.of(
+                    request.year.toInt(),
+                    request.month.toInt(),
+                    request.day.toInt()
+                )
             )
         )
     }
