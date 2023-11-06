@@ -12,6 +12,8 @@ import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
+import com.example.sharing.domain.feed.service.DeleteFeedService
+import com.example.sharing.domain.feed.service.UserApplyService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
