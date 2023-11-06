@@ -1,5 +1,6 @@
 package com.example.sharing.domain.schedule.domain
 
+<<<<<<< main
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
@@ -13,6 +14,13 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+=======
+import org.hibernate.annotations.DynamicInsert
+import org.hibernate.annotations.GenericGenerator
+import org.hibernate.validator.constraints.Length
+import java.util.*
+import javax.persistence.*
+>>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
 import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_schedule")
@@ -26,6 +34,7 @@ class Schedule (
 
     @field:NotNull
     @field:Length(max = 10)
+<<<<<<< main
     var title: String,
 
     @field:NotNull
@@ -43,3 +52,16 @@ class Schedule (
         this.date = date
     }
 }
+=======
+    val title: String,
+
+    @field:NotNull
+    val year: String,
+
+    @field:NotNull
+    val month: String,
+
+    @field:NotNull
+    val day: String
+)
+>>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
