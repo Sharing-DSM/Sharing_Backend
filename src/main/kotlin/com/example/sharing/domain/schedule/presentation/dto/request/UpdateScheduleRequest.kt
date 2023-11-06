@@ -5,10 +5,10 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-data class CreateScheduleRequest (
-    @field:NotBlank(message = "title는 Null, 공백을 허용하지 않습니다.")
-    @field:Size(max = 10, message = "title는 10자 이하여야 합니다.")
-    val title: String,
+class UpdateScheduleRequest (
+    @field:NotBlank(message = "title는 Null를 허용하지 않습니다.")
+    @field:Size(max = 10, message = "title은 10자 이하여야 합니다.")
+    var title: String,
 
     @field:NotBlank(message = "year르 Null, 공백, 띄어쓰기를 허용하지 않습니다.")
     @field:NotNull

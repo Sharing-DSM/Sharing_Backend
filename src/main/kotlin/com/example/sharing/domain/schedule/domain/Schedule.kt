@@ -1,5 +1,6 @@
 package com.example.sharing.domain.schedule.domain
 
+import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
@@ -18,14 +19,28 @@ class Schedule (
 
     @field:NotNull
     @field:Length(max = 10)
-    val title: String,
+    var title: String,
 
     @field:NotNull
-    val year: String,
+    var year: String,
 
     @field:NotNull
-    val month: String,
+    var month: String,
 
     @field:NotNull
-    val day: String
-)
+    var day: String,
+
+    user: User
+) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
+    var user = user
+        protected  set
+
+    fun updateSchedule(title: String, year: String, month: String, day: String) {
+        this.title = title
+        this.year = year
+        this.month = month
+        this.day = day
+    }
+}
