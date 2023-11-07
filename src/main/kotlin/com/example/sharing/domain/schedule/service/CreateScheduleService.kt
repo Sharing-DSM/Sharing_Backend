@@ -12,9 +12,11 @@ import java.util.*
 @Service
 class CreateScheduleService (
     private val scheduleRepository: ScheduleRepository,
+    private val userFacade: UserFacade,
 ) {
     @Transactional
     fun execute(request: CreateScheduleRequest) {
+        val user = userFacade.getCurrentUser()
         scheduleRepository.save(
             Schedule(
                 id = UUID.randomUUID(),
@@ -23,7 +25,9 @@ class CreateScheduleService (
                     request.year.toInt(),
                     request.month.toInt(),
                     request.day.toInt()
-                )
+                ),
+                check = false,
+                user = user
             )
         )
     }

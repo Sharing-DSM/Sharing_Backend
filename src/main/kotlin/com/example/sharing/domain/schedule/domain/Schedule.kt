@@ -1,5 +1,6 @@
 package com.example.sharing.domain.schedule.domain
 
+import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
@@ -15,12 +16,27 @@ class Schedule (
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "BINARY(16)")
-    val id: UUID,
+    var id: UUID,
 
     @field:NotNull
     @field:Length(max = 10)
-    val title: String,
+    var title: String,
 
     @field:NotNull
-    val date: LocalDate
-)
+    var date: LocalDate,
+
+    @field:NotNull
+    var check: Boolean,
+
+    user: User
+) {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
+    var user = user
+        protected  set
+
+    fun checkSchedule(check: Boolean) {
+        this.check = check
+    }
+}
