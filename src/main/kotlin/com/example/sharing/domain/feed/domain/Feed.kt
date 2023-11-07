@@ -57,6 +57,9 @@ class Feed(
     @field:NotNull
     var views: Int,
 
+    @field:NotNull
+    var isEmergency: Boolean = false,
+
     type: Type,
 
     user: User
