@@ -1,6 +1,7 @@
 package com.example.sharing.domain.schedule.domain
 
 <<<<<<< main
+<<<<<<< main
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
@@ -15,6 +16,9 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 =======
+=======
+import com.example.sharing.domain.user.domain.User
+>>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
@@ -31,10 +35,11 @@ class Schedule (
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "BINARY(16)")
-    val id: UUID,
+    var id: UUID,
 
     @field:NotNull
     @field:Length(max = 10)
+<<<<<<< main
 <<<<<<< main
     var title: String,
 
@@ -71,3 +76,25 @@ class Schedule (
     val date: LocalDate
 )
 >>>>>>> ♻️ :: LocalDate 사용
+=======
+    var title: String,
+
+    @field:NotNull
+    var date: LocalDate,
+
+    @field:NotNull
+    var check: Boolean,
+
+    user: User
+) {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
+    var user = user
+        protected  set
+
+    fun checkSchedule(check: Boolean) {
+        this.check = check
+    }
+}
+>>>>>>> ⚡️ :: 자원봉사 일정 확인 구현

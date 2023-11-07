@@ -13,16 +13,22 @@ import java.util.*
 class CreateScheduleService (
     private val scheduleRepository: ScheduleRepository,
 <<<<<<< main
+<<<<<<< main
+=======
+>>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
     private val userFacade: UserFacade,
 ) {
     @Transactional
     fun execute(request: CreateScheduleRequest) {
         val user = userFacade.getCurrentUser()
+<<<<<<< main
 =======
 ) {
     @Transactional
     fun execute(request: CreateScheduleRequest) {
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
+=======
+>>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
         scheduleRepository.save(
             Schedule(
                 id = UUID.randomUUID(),
@@ -41,8 +47,14 @@ class CreateScheduleService (
                     request.year.toInt(),
                     request.month.toInt(),
                     request.day.toInt()
+<<<<<<< main
                 )
 >>>>>>> ♻️ :: LocalDate 사용
+=======
+                ),
+                check = false,
+                user = user
+>>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
             )
         )
     }
