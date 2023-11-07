@@ -24,7 +24,7 @@ class ScheduleController (
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/{schedule-id}")
-    fun updateFeed(@PathVariable ("schedule-id") scheduleId: UUID, @RequestBody @Valid request: UpdateScheduleRequest) {
+    fun updateSchedule(@PathVariable ("schedule-id") scheduleId: UUID, @RequestBody @Valid request: UpdateScheduleRequest) {
         updateScheduleService.execute(scheduleId, request)
     }
 }
