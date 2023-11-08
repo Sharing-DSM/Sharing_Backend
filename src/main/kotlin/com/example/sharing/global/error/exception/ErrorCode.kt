@@ -12,12 +12,14 @@ enum class ErrorCode(
     FEIGN_UNAUTHORIZED(401, "Feign Unauthorized"),
 
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
-    NOT_VALID_USER(403, "Not Valid User"),
+    INVALID_USER(403, "Invalid User"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     FEED_NOT_FOUND(404, "Feed Not Found"),
+    ROOM_NOT_FOUND(404, "Room Not found"),
 
     ALREADY_ACCOUNT_ID_EXISTS(409, "Already Account Id Exists"),
+    ALREADY_ROOM_EXISTS(409, "Already Room Exists"),
 
     FEIGN_EXPIRED_TOKEN(419, "Feign Expired Token"),
 

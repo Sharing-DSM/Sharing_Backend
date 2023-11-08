@@ -8,6 +8,7 @@ data class SearchAddressResponse(
         val totalCount: Int,
         val isEnd: Boolean
     )
+
     data class DocumentElement(
         val x: String,
         val y: String,
@@ -15,11 +16,11 @@ data class SearchAddressResponse(
         val address: AddressElement?,
     )
 
-    data class AddressElement (
+    data class AddressElement(
         val addressName: String,
     )
 
-    data class RoadAddressElement (
+    data class RoadAddressElement(
         val addressName: String,
         val buildingName: String
     )

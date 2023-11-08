@@ -1,7 +1,7 @@
 package com.example.sharing.global.error.exception
 
-open class SharingException(
-    private val errorCode: ErrorCode,
+abstract class SharingException(
+    val errorCode: ErrorCode,
 ) : RuntimeException() {
     val status: Int
         get() = errorCode.status

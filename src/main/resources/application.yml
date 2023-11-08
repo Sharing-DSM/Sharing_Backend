@@ -24,7 +24,6 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
-
 jwt:
   secret_key: ${JWT_SECRET_KEY}
   access_exp: ${JWT_ACCESS_EXP}
@@ -46,5 +45,12 @@ cloud:
       access-key: ${AWS_S3_ACCESS}
       secret-key: ${AWS_S3_SECRET}
 
+
 kakao:
   api-key: ${KAKAO_API_KEY}
+
+socket:
+  port: ${SOCKET_PORT}
+
+server:
+  port: 9999
