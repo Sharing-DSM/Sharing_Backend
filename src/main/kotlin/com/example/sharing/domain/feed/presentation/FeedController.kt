@@ -5,9 +5,9 @@ import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequ
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
-import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
+import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
@@ -40,18 +40,19 @@ class FeedController(
   private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
   private val queryFeedListByMapService: QueryFeedListByMapService
 ) {
+
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
         createFeedService.execute(request)
     }
-    
+
     @ResponseStatus(NO_CONTENT)
     @DeleteMapping("/{feed-id}")
     fun deleteFeed(@PathVariable("feed-id") id: UUID) {
         deleteFeedService.execute(id)
     }
-    
+
     @ResponseStatus(NO_CONTENT)
     @PatchMapping("/{feed-id}")
     fun updateFeed(@PathVariable ("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {

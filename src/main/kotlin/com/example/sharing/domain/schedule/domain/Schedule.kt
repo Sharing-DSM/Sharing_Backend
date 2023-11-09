@@ -22,7 +22,7 @@ class Schedule (
     @GeneratedValue(generator = "uuid4")
     @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "BINARY(16)")
-    val id: UUID,
+    var id: UUID,
 
     @field:NotNull
     @field:Length(max = 10)
@@ -30,6 +30,9 @@ class Schedule (
 
     @field:NotNull
     var date: LocalDate,
+
+    @field:NotNull
+    var isCompleted: Boolean,
 
     user: User
 ) {
@@ -41,5 +44,9 @@ class Schedule (
     fun updateSchedule(title: String, date: LocalDate) {
         this.title = title
         this.date = date
+    }
+
+    fun updateIsCompleted(isComleted: Boolean) {
+        this.isCompleted = isCompleted
     }
 }

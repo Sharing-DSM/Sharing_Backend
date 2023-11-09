@@ -21,7 +21,8 @@ class CreateScheduleService (
                 id = UUID.randomUUID(),
                 title = request.title,
                 date = request.date,
-                user = user
+                user = user,
+                isCompleted = false
             )
         )
     }
