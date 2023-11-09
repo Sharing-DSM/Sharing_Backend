@@ -34,6 +34,12 @@ class User(
     @field:NotNull
     var age: Int,
 
+    var interestArea: String?,
+
     @field:Length(max = 2000)
     var profile: String?,
-)
+) {
+    fun updateInterestArea(interestArea: String?) {
+        this.interestArea = interestArea
+    }
+}

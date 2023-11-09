@@ -2,7 +2,7 @@ package com.example.sharing.domain.feed.service
 
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
-import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse.AddressElement
+import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse.*
 import com.example.sharing.global.utils.openfeign.client.KakaoAddressFeign
 import com.example.sharing.global.utils.openfeign.client.dto.response.SearchAddressResponse
 import org.springframework.stereotype.Service
@@ -23,9 +23,9 @@ class SearchAddressService(
             AddressElement(
                 x = document.x.toDouble(),
                 y = document.y.toDouble(),
-                addressName = document.address?.addressName,
-                roadAddressName = document.roadAddress?.addressName,
-                buildingName = document.roadAddress?.buildingName
+                addressName = document.address?.addressName ?: "",
+                roadAddressName = document.roadAddress?.addressName ?: "",
+                buildingName = document.roadAddress?.buildingName ?: ""
             )
         }
     }
