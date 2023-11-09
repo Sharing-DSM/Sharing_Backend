@@ -6,7 +6,10 @@ import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedReques
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.service.DeleteFeedService
+<<<<<<< HEAD
+=======
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
+>>>>>>> main
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
