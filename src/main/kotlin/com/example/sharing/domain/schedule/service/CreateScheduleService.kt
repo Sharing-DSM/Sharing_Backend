@@ -20,9 +20,7 @@ class CreateScheduleService (
             Schedule(
                 id = UUID.randomUUID(),
                 title = request.title,
-                year = request.year,
-                month = request.month,
-                day = request.day,
+                date = request.date,
                 user = user
             )
         )

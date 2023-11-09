@@ -15,7 +15,6 @@ import javax.validation.Valid
 class ScheduleController (
     private val createScheduleService: CreateScheduleService,
     private val updateScheduleService: UpdateScheduleService,
-    private val deleteScheduleService: DeleteScheduleService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -27,11 +26,5 @@ class ScheduleController (
     @PatchMapping("/{schedule-id}")
     fun updateSchedule(@PathVariable ("schedule-id") scheduleId: UUID, @RequestBody @Valid request: UpdateScheduleRequest) {
         updateScheduleService.execute(scheduleId, request)
-    }
-
-    @ResponseStatus(NO_CONTENT)
-    @DeleteMapping("/{schedule-id}")
-    fun deleteSchedule(@PathVariable("schedule-id") id: UUID) {
-        deleteScheduleService.execute(id)
     }
 }

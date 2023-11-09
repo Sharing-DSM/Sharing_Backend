@@ -6,6 +6,15 @@ import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
 import java.util.*
 import javax.persistence.*
+import java.time.LocalDate
+import java.util.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.FetchType.*
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_schedule")
@@ -22,13 +31,7 @@ class Schedule (
     var title: String,
 
     @field:NotNull
-    var year: String,
-
-    @field:NotNull
-    var month: String,
-
-    @field:NotNull
-    var day: String,
+    var date: LocalDate,
 
     user: User
 ) {
