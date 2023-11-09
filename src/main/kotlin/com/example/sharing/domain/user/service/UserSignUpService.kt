@@ -8,7 +8,7 @@ import com.example.sharing.domain.user.presentation.dto.request.UserSignUpReques
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.UUID
+import java.util.*
 
 @Service
 class UserSignUpService(
@@ -17,7 +17,7 @@ class UserSignUpService(
     private val passwordEncoder: PasswordEncoder
 ) {
     @Transactional
-    fun excute(request: UserSignUpRequest) {
+    fun execute(request: UserSignUpRequest) {
         if (userFacade.checkUserExist(request.accountId)) {
             throw AlreadyUserAccountIdExistsException.EXCEPTION
         }
@@ -29,7 +29,8 @@ class UserSignUpService(
                 password = passwordEncoder.encode(request.password),
                 name = request.name,
                 age = request.age,
-                profile = null
+                profile = null,
+                interestArea = null
             )
         )
     }
