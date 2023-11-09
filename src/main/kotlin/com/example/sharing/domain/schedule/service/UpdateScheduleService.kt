@@ -1,8 +1,7 @@
 package com.example.sharing.domain.schedule.service
 
-import com.example.sharing.domain.feed.exception.FeedNotFoundException
 import com.example.sharing.domain.feed.exception.NotValidUserException
-import com.example.sharing.domain.schedule.domain.repository.ScheduleRepository
+import com.example.sharing.domain.schedule.facade.ScheduleFacade
 import com.example.sharing.domain.schedule.presentation.dto.request.UpdateScheduleRequest
 import com.example.sharing.domain.user.domain.User
 import com.example.sharing.domain.user.facade.UserFacade
@@ -13,13 +12,12 @@ import java.util.*
 @Service
 class UpdateScheduleService(
     val userFacade: UserFacade,
-    val scheduleRepository: ScheduleRepository,
+    val scheduleFacade: ScheduleFacade,
 ) {
     @Transactional
     fun execute(scheduleId: UUID, request: UpdateScheduleRequest) {
         val user: User = userFacade.getCurrentUser()
-        val schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow { FeedNotFoundException.EXCEPTION }
+        val schedule = scheduleFacade.getById(scheduleId)
 
         if (user.id != schedule.user.id) {
             throw NotValidUserException.EXCEPTION
