@@ -4,13 +4,11 @@ import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import org.hibernate.validator.constraints.Length
-import java.util.*
-import javax.persistence.*
 import java.time.LocalDate
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType.*
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
@@ -40,10 +38,8 @@ class Schedule (
     var user = user
         protected  set
 
-    fun updateSchedule(title: String, year: String, month: String, day: String) {
+    fun updateSchedule(title: String, date: LocalDate) {
         this.title = title
-        this.year = year
-        this.month = month
-        this.day = day
+        this.date = date
     }
 }

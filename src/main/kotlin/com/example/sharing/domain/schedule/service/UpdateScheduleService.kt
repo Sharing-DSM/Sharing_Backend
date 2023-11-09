@@ -11,18 +11,20 @@ import org.springframework.transaction.annotation.Transactional
 import java.util.*
 
 @Service
-class UpdateScheduleService (
+class UpdateScheduleService(
     val userFacade: UserFacade,
     val scheduleRepository: ScheduleRepository,
 ) {
     @Transactional
-    fun execute(scheduleId : UUID, request: UpdateScheduleRequest) {
+    fun execute(scheduleId: UUID, request: UpdateScheduleRequest) {
         val user: User = userFacade.getCurrentUser()
         val schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow { FeedNotFoundException.EXCEPTION}
-        if (!user.id.equals(schedule.user.id)) {
+            .orElseThrow { FeedNotFoundException.EXCEPTION }
+
+        if (user.id != schedule.user.id) {
             throw NotValidUserException.EXCEPTION
         }
-        schedule.updateSchedule(request.title, request.year, request.month, request.day)
+
+        schedule.updateSchedule(request.title, request.date)
     }
 }
