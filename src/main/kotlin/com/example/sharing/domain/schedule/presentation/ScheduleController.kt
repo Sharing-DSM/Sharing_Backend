@@ -1,5 +1,6 @@
 package com.example.sharing.domain.schedule.presentation
 
+<<<<<<< main
 import com.example.sharing.domain.schedule.presentation.dto.request.CreateScheduleRequest
 <<<<<<< main
 <<<<<<< main
@@ -14,18 +15,25 @@ import java.util.*
 import com.example.sharing.domain.schedule.service.CheckScheduleService
 >>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
 import com.example.sharing.domain.schedule.service.CreateScheduleService
+=======
+import com.example.sharing.domain.schedule.service.CheckScheduleService
+>>>>>>> ♻️ :: 리팩
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.*
 <<<<<<< main
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
 =======
 import java.util.*
+<<<<<<< main
 >>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
 import javax.validation.Valid
+=======
+>>>>>>> ♻️ :: 리팩
 
 @RequestMapping("/schedules")
 @RestController
 class ScheduleController (
+<<<<<<< main
     private val createScheduleService: CreateScheduleService,
 <<<<<<< main
 <<<<<<< main
@@ -57,8 +65,12 @@ class ScheduleController (
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
 =======
 
+=======
+    private val checkScheduleService: CheckScheduleService,
+) {
+>>>>>>> ♻️ :: 리팩
     @ResponseStatus(NO_CONTENT)
-    @PatchMapping("/check/{schedule-id}")
+    @PutMapping("/check/{schedule-id}")
     fun checkSchedule(@PathVariable ("schedule-id") scheduleId: UUID) {
         checkScheduleService.execute(scheduleId)
     }

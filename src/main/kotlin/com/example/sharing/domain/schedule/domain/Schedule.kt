@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+<<<<<<< main
 =======
 =======
 import com.example.sharing.domain.user.domain.User
@@ -26,6 +27,8 @@ import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
 >>>>>>> ⚡️ :: 자원봉사 일정 추가 구현
+=======
+>>>>>>> ♻️ :: 리팩
 import javax.validation.constraints.NotNull
 
 @Entity(name = "tbl_schedule")
@@ -83,7 +86,8 @@ class Schedule (
     var date: LocalDate,
 
     @field:NotNull
-    var check: Boolean,
+    @Column(columnDefinition = "BIT(1) default 0")
+    var isCompleted: Boolean,
 
     user: User
 ) {
@@ -93,8 +97,8 @@ class Schedule (
     var user = user
         protected  set
 
-    fun checkSchedule(check: Boolean) {
-        this.check = check
+    fun updateIsCompleted(isCompleted: Boolean) {
+        this.isCompleted = isCompleted
     }
 }
 >>>>>>> ⚡️ :: 자원봉사 일정 확인 구현
