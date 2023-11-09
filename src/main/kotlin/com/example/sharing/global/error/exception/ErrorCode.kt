@@ -17,6 +17,7 @@ enum class ErrorCode(
     USER_NOT_FOUND(404, "User Not Found"),
     FEED_NOT_FOUND(404, "Feed Not Found"),
     ROOM_NOT_FOUND(404, "Room Not found"),
+    SCHEDULE_NOT_FOUND(404, "Schedule Not Found"),
     USER_INTEREST_AREA_NOT_FOUND(404, "User Interest Area Not Found"),
 
     ALREADY_ACCOUNT_ID_EXISTS(409, "Already Account Id Exists"),

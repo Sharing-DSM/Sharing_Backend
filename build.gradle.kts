@@ -60,3 +60,10 @@ noArg {
 tasks.getByName<Jar>("jar") {
     enabled = false
 }
+
+configurations {
+    create("myConfiguration") {
+        isCanBeResolved = true
+        isCanBeConsumed = false
+    }
+}
