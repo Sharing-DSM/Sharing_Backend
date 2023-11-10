@@ -27,7 +27,7 @@ class CreateRoomService(
             id = UUID.randomUUID(),
             userA = userA,
             userB = userB,
-            lastText = null,
+            lastText = "",
             lastSendAt = LocalDateTime.now(),
             lastReadAt = LocalDateTime.now()
         ))
