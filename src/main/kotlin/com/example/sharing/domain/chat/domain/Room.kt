@@ -1,6 +1,7 @@
 package com.example.sharing.domain.chat.domain
 
 import com.example.sharing.domain.user.domain.User
+import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDateTime
 import java.util.*
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity(name = "tbl_room")
+@DynamicInsert
 class Room(
     @Id
     @GeneratedValue(generator = "uuid4")
