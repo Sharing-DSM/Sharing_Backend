@@ -28,8 +28,10 @@ class Room(
 
     var lastText: String?,
 
+    @Column(columnDefinition = "DATETIME")
     var lastSendAt: LocalDateTime?,
 
+    @Column(columnDefinition = "DATETIME")
     var lastReadAt: LocalDateTime?
 ) {
     @ManyToOne(fetch = LAZY)
