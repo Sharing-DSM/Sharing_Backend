@@ -12,7 +12,7 @@ import javax.persistence.Id
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
-@Entity(name = "tbl_name")
+@Entity(name = "tbl_chat")
 @DynamicInsert
 class Chat(
     @Id
