@@ -33,8 +33,8 @@ class ScheduleController (
     
     @ResponseStatus(NO_CONTENT)
     @DeleteMapping("/{schedule-id}")
-    fun deleteSchedule(@PathVariable("schedule-id") id: UUID) {
-        deleteScheduleService.execute(id)
+    fun deleteSchedule(@PathVariable("schedule-id") scheduleId: UUID) {
+        deleteScheduleService.execute(scheduleId)
     }
     
     @ResponseStatus(NO_CONTENT)
