@@ -14,6 +14,6 @@ class QueryUserService(
     @Transactional(readOnly = true)
     fun execute(): QueryUserResponse {
         val user = userFacade.getCurrentUser()
-        return QueryUserResponse(user.name, user.accountId)
+        return QueryUserResponse(user.name, user.accountId, user.age)
     }
 }
