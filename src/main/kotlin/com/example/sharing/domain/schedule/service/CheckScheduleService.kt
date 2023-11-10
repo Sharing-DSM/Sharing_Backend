@@ -1,6 +1,6 @@
 package com.example.sharing.domain.schedule.service
 
-import com.example.sharing.domain.feed.exception.NotValidUserException
+import com.example.sharing.domain.chat.exception.InvalidUserException
 import com.example.sharing.domain.schedule.facade.ScheduleFacade
 import com.example.sharing.domain.user.domain.User
 import com.example.sharing.domain.user.facade.UserFacade
@@ -19,7 +19,7 @@ class CheckScheduleService(
         val schedule = scheduleFacade.getById(scheduleId)
 
         if (user.id != schedule.user.id) {
-            throw NotValidUserException.EXCEPTION
+            throw InvalidUserException.EXCEPTION
         }
 
         schedule.updateIsCompleted(true)
