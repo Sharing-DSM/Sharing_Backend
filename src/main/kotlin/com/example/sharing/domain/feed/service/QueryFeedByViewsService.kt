@@ -11,6 +11,6 @@ class QueryFeedByViewsService(
 ) {
     @Transactional(readOnly = true)
     fun execute(): List<FeedElement> {
-        return feedRepository.findAllByOrderByViewsDesc()
+        return feedRepository.findTop3ByOrderByViewsDesc()
     }
 }
