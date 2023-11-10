@@ -1,5 +1,6 @@
 package com.example.sharing.domain.feed.presentation.dto.response
 
+import com.example.sharing.domain.user.domain.User
 import java.util.*
 
 data class QueryFeedDetailResponse(
@@ -10,4 +11,5 @@ data class QueryFeedDetailResponse(
     val volunteerTime: Int,
     val content: String,
     val isMine: Boolean,
+    val user: User
 )

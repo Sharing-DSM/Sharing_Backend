@@ -24,14 +24,15 @@ class QueryFeedDetailService(
             addressName = feed.addressName,
             volunteerTime = feed.volunteerTime,
             content = feed.content,
-            isMine = getIsMine(feed.user.id)
+            user = feed.user,
+            isMine = getIsMine(feed.user.id),
         )
     }
 
     private fun getIsMine(userId: UUID): Boolean {
         return try {
             userId == userFacade.getUserId()
-        } catch(e: UserNotFoundException) {
+        } catch (e: UserNotFoundException) {
             false
         }
     }
