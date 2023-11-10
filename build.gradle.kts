@@ -30,6 +30,7 @@ dependencies {
     implementation(Dependencies.QUERYDSL)
     implementation(Dependencies.OPENFEIGN)
     implementation(Dependencies.CLOUD_AWS)
+    implementation(Dependencies.SOCKET)
     annotationProcessor(Dependencies.CONFIGURATION_PROCESSOR)
 }
 
@@ -58,4 +59,11 @@ noArg {
 
 tasks.getByName<Jar>("jar") {
     enabled = false
+}
+
+configurations {
+    create("myConfiguration") {
+        isCanBeResolved = true
+        isCanBeConsumed = false
+    }
 }

@@ -5,12 +5,14 @@ import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequ
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
+import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
+import com.example.sharing.domain.feed.service.QueryFeedListByMapService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import com.example.sharing.domain.feed.service.UserApplyService
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
@@ -38,7 +41,16 @@ class FeedController(
     private val queryFeedDetailService: QueryFeedDetailService,
     private val queryFeedByViewsService: QueryFeedByViewsService,
     private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService
+  private val updateFeedService: UpdateFeedService,
+  private val createFeedService: CreateFeedService,
+  private val deleteFeedService: DeleteFeedService,
+  private val searchAddressService: SearchAddressService,
+  private val queryFeedDetailService: QueryFeedDetailService,
+  private val queryFeedByViewsService: QueryFeedByViewsService,
+  private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
+  private val queryFeedListByMapService: QueryFeedListByMapService
 ) {
+
     @ResponseStatus(CREATED)
     @PostMapping
     fun createFeed(@RequestBody @Valid request: CreateFeedRequest) {
@@ -56,14 +68,13 @@ class FeedController(
     fun updateFeed(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
     }
-
     @ResponseStatus(CREATED)
     @PostMapping("/{feed-id}")
     fun apply(@PathVariable("feed-id") feedId: UUID) {
         userApplyService.execute(feedId)
     }
-
-    @GetMapping("/address")
+    
+    @PostMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
         return searchAddressService.execute(request)
     }
@@ -81,5 +92,10 @@ class FeedController(
     @GetMapping("/interest-area")
     fun getFeedListByInterestArea(): List<FeedElement> {
         return queryFeedByInterestAreaService.execute()
+    }
+
+    @GetMapping("/map")
+    fun getFeedListByMap(@RequestParam("location") location: String): List<FeedElement> {
+        return queryFeedListByMapService.execute(location)
     }
 }

@@ -37,4 +37,7 @@ data class CreateFeedRequest(
 
     @field:NotNull(message = "volunteerTime는 Null를 허용하지 않습니다.")
     val volunteerTime: Int,
+
+    @field:NotNull(message = "isEmergency는 Null를 허용하지 않습니다.")
+    val isEmergency: Boolean
 )

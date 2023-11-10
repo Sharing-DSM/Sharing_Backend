@@ -1,8 +1,8 @@
 package com.example.sharing.domain.feed.service
 
+import com.example.sharing.domain.chat.exception.InvalidUserException
 import com.example.sharing.domain.feed.domain.repository.FeedRepository
 import com.example.sharing.domain.feed.exception.FeedNotFoundException
-import com.example.sharing.domain.feed.exception.NotValidUserException
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.user.domain.User
 import com.example.sharing.domain.user.facade.UserFacade
@@ -22,7 +22,7 @@ class UpdateFeedService(
         val feed = feedRepository.findById(feedId)
             .orElseThrow {FeedNotFoundException.EXCEPTION}
         if (!user.id.equals(feed.user.id)) {
-            throw NotValidUserException.EXCEPTION
+            throw InvalidUserException.EXCEPTION
         }
         feed.updateFeed(request.title, request.content, request.recruitment, request.volunteerTime)
     }
