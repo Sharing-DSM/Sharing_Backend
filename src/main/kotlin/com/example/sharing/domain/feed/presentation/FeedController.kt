@@ -5,7 +5,6 @@ import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequ
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
-import com.example.sharing.domain.feed.service.DeleteFeedService
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.DeleteFeedService
@@ -40,15 +39,8 @@ class FeedController(
     private val userApplyService: UserApplyService,
     private val queryFeedDetailService: QueryFeedDetailService,
     private val queryFeedByViewsService: QueryFeedByViewsService,
-    private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService
-  private val updateFeedService: UpdateFeedService,
-  private val createFeedService: CreateFeedService,
-  private val deleteFeedService: DeleteFeedService,
-  private val searchAddressService: SearchAddressService,
-  private val queryFeedDetailService: QueryFeedDetailService,
-  private val queryFeedByViewsService: QueryFeedByViewsService,
-  private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
-  private val queryFeedListByMapService: QueryFeedListByMapService
+    private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
+    private val queryFeedListByMapService: QueryFeedListByMapService
 ) {
 
     @ResponseStatus(CREATED)
@@ -68,12 +60,13 @@ class FeedController(
     fun updateFeed(@PathVariable("feed-id") feedId: UUID, @RequestBody @Valid request: UpdateFeedRequest) {
         updateFeedService.execute(feedId, request)
     }
+
     @ResponseStatus(CREATED)
     @PostMapping("/{feed-id}")
     fun apply(@PathVariable("feed-id") feedId: UUID) {
         userApplyService.execute(feedId)
     }
-    
+
     @PostMapping("/address")
     fun getAddress(@RequestBody request: QueryAddressRequest): QueryAddressResponse {
         return searchAddressService.execute(request)
