@@ -42,4 +42,10 @@ class User(
     fun updateInterestArea(interestArea: String?) {
         this.interestArea = interestArea
     }
+
+    fun updateUserInfo(accountId: String, name: String, age: Int) {
+        this.accountId = accountId
+        this.name = name
+        this.age = age
+    }
 }
