@@ -7,6 +7,7 @@ import com.example.sharing.domain.chat.presentation.dto.CreateRoomResponse
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 import java.util.*
 
 @Service
@@ -27,8 +28,8 @@ class CreateRoomService(
             userA = userA,
             userB = userB,
             lastText = null,
-            lastSendAt = null,
-            lastReadAt = null
+            lastSendAt = LocalDateTime.now(),
+            lastReadAt = LocalDateTime.now()
         ))
 
         return CreateRoomResponse(roomId = room.id)
