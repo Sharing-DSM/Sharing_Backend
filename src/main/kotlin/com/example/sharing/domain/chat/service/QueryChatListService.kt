@@ -9,6 +9,7 @@ import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
+import kotlin.streams.toList
 
 @Service
 class QueryChatListService(
@@ -24,8 +25,7 @@ class QueryChatListService(
         return QueryChatListResponse(
             chatRepository.findAllById(room.id)
                 .stream()
-                .map { chat -> ChatResponse.of(chat as Chat, chat.user.name == user.name)}
-                .toList()
+                .map { chat -> ChatResponse.of(chat as Chat, chat.user.name == user.name)}.toList()
         )
     }
 }

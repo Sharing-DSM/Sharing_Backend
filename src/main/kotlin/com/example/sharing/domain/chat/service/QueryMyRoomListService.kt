@@ -6,6 +6,7 @@ import com.example.sharing.domain.chat.presentation.dto.RoomResponse
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import kotlin.streams.toList
 
 @Service
 class QueryMyRoomListService(
@@ -18,8 +19,7 @@ class QueryMyRoomListService(
         return QueryMyRoomListResponse(
             roomRepository.findAllByUserA(user)
                 .stream()
-                .map(RoomResponse::of)
-                .toList()
+                .map(RoomResponse::of).toList()
         )
     }
 }
