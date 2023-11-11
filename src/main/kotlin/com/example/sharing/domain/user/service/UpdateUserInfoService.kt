@@ -12,7 +12,7 @@ class UpdateUserInfoService(
     @Transactional
     fun execute(request: UpdateUserInfoRequest) {
         val user = userFacade.getCurrentUser()
-        user.updateUserInfo(user.accountId, user.name, user.age)
+        user.updateUserInfo(request.accountId, request.name, request.age)
     }
 
 }
