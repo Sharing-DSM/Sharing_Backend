@@ -46,7 +46,7 @@ class Feed(
     var x: Double,
 
     @field:NotNull
-    val y: Double,
+    var y: Double,
 
     @field:NotNull
     var recruitment: Int,
@@ -74,10 +74,15 @@ class Feed(
     var type = type
         protected set
 
-    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int) {
+    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int, addressName: String, isEmergency: Boolean, roadAddressName: String, x: Double, y: Double) {
         this.title = title
         this.content = content
         this.recruitment = recruitment
         this.volunteerTime = volunteerTime
+        this.addressName = addressName
+        this.roadAddressName = roadAddressName
+        this.x = x
+        this.y = y
+        this.isEmergency = isEmergency
     }
 }

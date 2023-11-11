@@ -1,21 +1,25 @@
 package com.example.sharing.domain.feed.presentation.dto.request
 
-import javax.validation.constraints.NotBlank
-import javax.validation.constraints.NotNull
-import javax.validation.constraints.Size
+import com.example.sharing.domain.feed.domain.type.Type
 
 data class UpdateFeedRequest (
-    @field:NotBlank(message = "title는 Null를 허용하지 않습니다.")
-    @field:Size(max = 20, message = "title은 20자 이하여야 합니다.")
-    var title: String,
+    val title: String,
 
-    @field:NotBlank(message = "content는 Null를 허용하지 않습니다.")
-    @field:Size(max = 2000, message = "content은 2000자 이하여야 합니다.")
-    var content: String,
+    val content: String,
 
-    @field:NotNull(message = "recruitment는 Null를 허용하지 않습니다.")
-    var recruitment: Int,
+    val addressName: String,
 
-    @field:NotNull(message = "volunteerTime는 Null를 허용하지 않습니다.")
-    var volunteerTime: Int,
+    val roadAddressName: String,
+
+    val type: Type,
+
+    val x: Double,
+
+    val y: Double,
+
+    val recruitment: Int,
+
+    val volunteerTime: Int,
+
+    val isEmergency: Boolean
 )

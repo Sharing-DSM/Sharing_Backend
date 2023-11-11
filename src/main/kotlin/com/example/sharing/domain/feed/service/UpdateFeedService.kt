@@ -20,10 +20,20 @@ class UpdateFeedService(
     fun execute(feedId: UUID, request: UpdateFeedRequest) {
         val user: User = userFacade.getCurrentUser()
         val feed = feedRepository.findById(feedId)
-            .orElseThrow {FeedNotFoundException.EXCEPTION}
-        if (!user.id.equals(feed.user.id)) {
+            .orElseThrow { FeedNotFoundException.EXCEPTION }
+        if (user.id != feed.user.id) {
             throw InvalidUserException.EXCEPTION
         }
-        feed.updateFeed(request.title, request.content, request.recruitment, request.volunteerTime)
+        feed.updateFeed(
+            request.title,
+            request.content,
+            request.recruitment,
+            request.volunteerTime,
+            request.addressName,
+            request.isEmergency,
+            request.roadAddressName,
+            request.x,
+            request.y
+        )
     }
 }
