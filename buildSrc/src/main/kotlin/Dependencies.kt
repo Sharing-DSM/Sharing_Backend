@@ -13,6 +13,5 @@ object Dependencies {
     const val QUERYDSL_PROCESSOR = "com.querydsl:querydsl-apt:${DependencyVersions.QUERYDSL}:jpa"
     const val CONFIGURATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
     const val OPENFEIGN = "org.springframework.cloud:spring-cloud-starter-openfeign:${DependencyVersions.OPENFEIGN}"
-    const val CLOUD_AWS = "org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersions.AWS}.RELEASE"
     const val SOCKET = "com.corundumstudio.socketio:netty-socketio:1.7.18"
 }

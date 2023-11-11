@@ -29,7 +29,6 @@ dependencies {
     implementation(Dependencies.REDIS)
     implementation(Dependencies.QUERYDSL)
     implementation(Dependencies.OPENFEIGN)
-    implementation(Dependencies.CLOUD_AWS)
     implementation(Dependencies.SOCKET)
     annotationProcessor(Dependencies.CONFIGURATION_PROCESSOR)
 }
