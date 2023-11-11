@@ -33,7 +33,8 @@ class UpdateFeedService(
             request.isEmergency,
             request.roadAddressName,
             request.x,
-            request.y
+            request.y,
+            request.type
         )
     }
 }

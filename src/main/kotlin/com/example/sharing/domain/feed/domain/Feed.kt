@@ -74,7 +74,7 @@ class Feed(
     var type = type
         protected set
 
-    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int, addressName: String, isEmergency: Boolean, roadAddressName: String, x: Double, y: Double) {
+    fun updateFeed(title: String, content: String, recruitment: Int, volunteerTime: Int, addressName: String, isEmergency: Boolean, roadAddressName: String, x: Double, y: Double, type: Type) {
         this.title = title
         this.content = content
         this.recruitment = recruitment
@@ -84,5 +84,6 @@ class Feed(
         this.x = x
         this.y = y
         this.isEmergency = isEmergency
+        this.type = type
     }
 }
