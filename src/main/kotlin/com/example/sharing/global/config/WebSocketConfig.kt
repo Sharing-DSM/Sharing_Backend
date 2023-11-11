@@ -18,12 +18,12 @@ class WebSocketConfig(
         val socketConfig = SocketConfig()
         val configuration = com.corundumstudio.socketio.Configuration()
 
-        socketConfig.setReuseAddress(true)
+        socketConfig.isReuseAddress = true
 
-        configuration.setPort(port)
-        configuration.setOrigin("*")
-        configuration.setSocketConfig(socketConfig)
-        configuration.setExceptionListener(SocketExceptionListener())
+        configuration.port = port
+        configuration.origin = "*"
+        configuration.socketConfig = socketConfig
+        configuration.exceptionListener = SocketExceptionListener()
 
         return SocketIOServer(configuration)
     }
