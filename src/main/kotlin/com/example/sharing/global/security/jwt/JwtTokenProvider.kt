@@ -63,8 +63,8 @@ class JwtTokenProvider(
         } else null
     }
 
-    fun authorization(token: String?): UsernamePasswordAuthenticationToken? {
-        return token?.let {
+    fun authorization(token: String): UsernamePasswordAuthenticationToken {
+        return token.let {
             val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
             return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
         }
