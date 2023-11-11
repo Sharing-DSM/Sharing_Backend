@@ -9,6 +9,7 @@ data class QueryFeedDetailResponse(
     val recruitment: Int,
     val volunteerTime: Int,
     val content: String,
+    val isEmergency: Boolean,
     val isMine: Boolean,
     val userId: UUID
 )

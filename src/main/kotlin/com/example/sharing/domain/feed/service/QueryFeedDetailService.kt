@@ -23,6 +23,7 @@ class QueryFeedDetailService(
             addressName = feed.addressName,
             volunteerTime = feed.volunteerTime,
             content = feed.content,
+            isEmergency = feed.isEmergency,
             userId = feed.user.id,
             isMine = getIsMine(feed.user.id),
         )
