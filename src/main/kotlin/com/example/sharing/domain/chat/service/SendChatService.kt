@@ -23,7 +23,6 @@ class SendChatService(
     fun execute(socketIOServer: SocketIOServer, socketIOClient: SocketIOClient, request: SendChatRequest) {
         val user = userFacade.getCurrentUser()
         val room = roomFacade.getCurrentRoom(socketIOClient)
-
         val chat = chatRepository.save(
             Chat(
                 id = UUID.randomUUID(),
