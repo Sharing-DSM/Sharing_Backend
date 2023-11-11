@@ -5,9 +5,11 @@ import com.corundumstudio.socketio.SocketIOServer
 import com.example.sharing.domain.chat.domain.Chat
 import com.example.sharing.domain.chat.domain.repository.ChatRepository
 import com.example.sharing.domain.chat.facade.RoomFacade
+import com.example.sharing.domain.chat.facade.RoomUserFacade
 import com.example.sharing.domain.chat.presentation.dto.ChatResponse
 import com.example.sharing.domain.chat.presentation.dto.SendChatRequest
 import com.example.sharing.domain.user.facade.UserFacade
+import com.example.sharing.global.socket.utils.SocketUtil
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
@@ -18,11 +20,13 @@ class SendChatService(
     private val chatRepository: ChatRepository,
     private val userFacade: UserFacade,
     private val roomFacade: RoomFacade,
+    private val roomUserFacade: RoomUserFacade,
 ) {
     @Transactional
     fun execute(socketIOServer: SocketIOServer, socketIOClient: SocketIOClient, request: SendChatRequest) {
         val user = userFacade.getCurrentUser(socketIOClient)
         val room = roomFacade.getCurrentRoom(socketIOClient)
+        val roomUser = roomUserFacade.getByRoomAndUser(room.id, user.id)
         val chat = chatRepository.save(
             Chat(
                 id = UUID.randomUUID(),
@@ -33,9 +37,13 @@ class SendChatService(
             )
         )
 
-        room.updateLastTextAndLastSendAt(request.message, LocalDateTime.now(), LocalDateTime.now())
+        room.updateLastTextAndLastSendAt(chat.text, LocalDateTime.now())
+        roomUser.updateLastReadAt(LocalDateTime.now())
 
         socketIOServer.getRoomOperations(room.id.toString())
-            .clients.forEach { client -> client.sendEvent("chat", ChatResponse.of(chat, client == socketIOClient)) }
+            .clients.forEach { client -> client.sendEvent("chat", ChatResponse.of(chat, client == socketIOClient))
+                val roomUser = roomUserFacade.getByRoomAndUser(room.id, SocketUtil.getUserId(client))
+                roomUser.updateLastReadAt(LocalDateTime.now())
+            }
     }
 }

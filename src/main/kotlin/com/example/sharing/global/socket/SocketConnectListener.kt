@@ -6,7 +6,6 @@ import com.example.sharing.domain.user.facade.UserFacade
 import com.example.sharing.global.security.jwt.JwtTokenProvider
 import com.example.sharing.global.socket.facade.SocketRoomFacade
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class SocketConnectListener(
@@ -16,12 +15,12 @@ class SocketConnectListener(
 ) {
     @OnConnect
     fun onConnect(socketIOClient: SocketIOClient) {
-        val token = jwtTokenProvider.resolveToken(socketIOClient)
+        val token: String? = jwtTokenProvider.resolveToken(socketIOClient)
         val authorization = jwtTokenProvider.authorization(token)
-        val accountId = authorization?.name
-        val user = accountId?.let { userFacade.getByAccountId(it) }
+        val accountId = authorization.name
+        val user = userFacade.getByAccountId(accountId)
 
-        socketIOClient.set("user", user?.id)
-        socketRoomFacade.joinRoom(socketIOClient, UUID.randomUUID())
+        socketIOClient.set("user", user.id)
+        socketRoomFacade.joinAllRoom(socketIOClient, user)
     }
 }

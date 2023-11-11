@@ -2,6 +2,7 @@ package com.example.sharing.domain.chat.facade
 
 import com.corundumstudio.socketio.SocketIOClient
 import com.example.sharing.domain.chat.domain.Room
+import com.example.sharing.domain.chat.domain.repository.PrivateRoomRepository
 import com.example.sharing.domain.chat.domain.repository.RoomRepository
 import com.example.sharing.domain.chat.exception.RoomAlreadyExistsException
 import com.example.sharing.domain.chat.exception.RoomNotfoundException
@@ -13,9 +14,10 @@ import java.util.*
 @Component
 class RoomFacade(
     private val roomRepository: RoomRepository,
+    private val privateRoomRepository: PrivateRoomRepository
 ) {
-    fun getRoomById(id: UUID): Room {
-        return roomRepository.findById(id)
+    fun getRoomById(roomId: UUID): Room {
+        return roomRepository.findById(roomId)
             .orElseThrow { RoomNotfoundException.EXCEPTION }
     }
 
@@ -24,7 +26,7 @@ class RoomFacade(
     }
 
     fun checkRoomExist(userA: User, userB: User) {
-        if(roomRepository.existsRoomByUserAAndUserB(userA, userB)) {
+        if(privateRoomRepository.existsByUserAAndUserB(userA, userB)) {
             throw RoomAlreadyExistsException.EXCEPTION
         }
     }

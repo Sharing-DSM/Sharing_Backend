@@ -1,17 +1,14 @@
 package com.example.sharing.domain.chat.domain
 
-import com.example.sharing.domain.user.domain.User
+import com.example.sharing.domain.chat.domain.type.RoomType
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.FetchType.*
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
 
 @Entity(name = "tbl_room")
 @DynamicInsert
@@ -22,31 +19,16 @@ class Room(
     @Column(columnDefinition = "BINARY(16)")
     val id: UUID,
 
-    userA: User,
+    @Column(nullable = false)
+    var roomType: RoomType,
 
-    userB: User,
-
-    var lastText: String?,
-
-    @Column(columnDefinition = "DATETIME")
-    var lastSendAt: LocalDateTime?,
+    var lastText: String,
 
     @Column(columnDefinition = "DATETIME")
-    var lastReadAt: LocalDateTime?
+    var lastSendAt: LocalDateTime,
 ) {
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userA_id", columnDefinition = "BINARY(16)", nullable = false)
-    var userA = userA
-        protected  set
-
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "userB_id", columnDefinition = "BINARY(16)", nullable = false)
-    var userB = userB
-        protected  set
-
-    fun updateLastTextAndLastSendAt(lastText: String, lastSendAt: LocalDateTime, lastReadAt: LocalDateTime) {
+    fun updateLastTextAndLastSendAt(lastText: String, lastSendAt: LocalDateTime) {
         this.lastText = lastText
         this.lastSendAt = lastSendAt
-        this.lastReadAt = lastReadAt
     }
 }

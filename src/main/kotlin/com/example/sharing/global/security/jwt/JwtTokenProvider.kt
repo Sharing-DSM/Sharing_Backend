@@ -63,22 +63,22 @@ class JwtTokenProvider(
         } else null
     }
 
-    fun authorization(token: String): UsernamePasswordAuthenticationToken {
-        token.let {
-            val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
-            return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
-        }
+    fun authorization(token: String?): UsernamePasswordAuthenticationToken {
+        val userDetails: UserDetails = authDetailsService.loadUserByUsername(getTokenSubject(token))
+        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
     }
 
-    fun resolveToken(socketIOClient: SocketIOClient): String {
-        val bearer = socketIOClient.handshakeData.httpHeaders.get(jwtProperties.header)
-        if (bearer != null && bearer.startsWith(jwtProperties.prefix) && bearer.length == jwtProperties.prefix.length + 1) {
-            return bearer.substring(jwtProperties.prefix.length + 1)
+    fun resolveToken(socketIOClient: SocketIOClient): String? {
+        val bearerToken = socketIOClient.handshakeData.httpHeaders[jwtProperties.header]
+
+        if (bearerToken?.isNotEmpty() == true && bearerToken.startsWith(jwtProperties.prefix)
+            && bearerToken.length > jwtProperties.prefix.length + 1) {
+            return bearerToken.substring(jwtProperties.prefix.length + 1)
         }
-        return null.toString()
+        return null
     }
 
-    private fun getTokenSubject(subject: String): String {
+    private fun getTokenSubject(subject: String?): String {
         return getTokenBody(subject).subject
     }
 

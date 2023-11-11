@@ -5,10 +5,12 @@ import com.corundumstudio.socketio.SocketIOServer
 import com.example.sharing.domain.chat.domain.Chat
 import com.example.sharing.domain.chat.domain.repository.ChatRepository
 import com.example.sharing.domain.chat.facade.RoomFacade
+import com.example.sharing.domain.chat.facade.RoomUserFacade
 import com.example.sharing.domain.chat.presentation.dto.ChatResponse
 import com.example.sharing.domain.chat.presentation.dto.SendChatRequest
 import com.example.sharing.domain.user.facade.UserFacade
-import com.fasterxml.jackson.databind.JsonMappingException
+import com.example.sharing.global.socket.utils.SocketUtil
+import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -20,12 +22,14 @@ class SendChat2Service(
     private val chatRepository: ChatRepository,
     private val userFacade: UserFacade,
     private val roomFacade: RoomFacade,
+    private val roomUserFacade: RoomUserFacade,
     private val objectMapper: ObjectMapper,
 ) {
     @Transactional
     fun execute(socketIOServer: SocketIOServer, socketIOClient: SocketIOClient, request: SendChatRequest) {
         val user = userFacade.getCurrentUser(socketIOClient)
         val room = roomFacade.getCurrentRoom(socketIOClient)
+        val roomUser = roomUserFacade.getByRoomAndUser(room.id, user.id)
         val chat = chatRepository.save(
             Chat(
                 id = UUID.randomUUID(),
@@ -36,16 +40,17 @@ class SendChat2Service(
             )
         )
 
-        room.updateLastTextAndLastSendAt(request.message, LocalDateTime.now(), LocalDateTime.now())
+        room.updateLastTextAndLastSendAt(chat.text, LocalDateTime.now())
+        roomUser.updateLastReadAt(LocalDateTime.now())
 
         socketIOServer.getRoomOperations(room.id.toString())
             .clients.forEach { client ->
                 try {
-                    client.sendEvent(
-                        "chat",
-                        objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient))
-                    )
-                } catch (ignore: JsonMappingException) { }
+                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient)))
+                } catch (ignore: JsonProcessingException) {
+                    val clientRoomUser = roomUserFacade.getByRoomAndUser(room.id, SocketUtil.getUserId(client))
+                    clientRoomUser.updateLastReadAt(LocalDateTime.now())
+                }
             }
     }
 }

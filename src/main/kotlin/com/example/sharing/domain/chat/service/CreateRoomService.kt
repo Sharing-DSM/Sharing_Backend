@@ -2,6 +2,7 @@ package com.example.sharing.domain.chat.service
 
 import com.example.sharing.domain.chat.domain.Room
 import com.example.sharing.domain.chat.domain.repository.RoomRepository
+import com.example.sharing.domain.chat.domain.type.RoomType.*
 import com.example.sharing.domain.chat.facade.RoomFacade
 import com.example.sharing.domain.chat.presentation.dto.CreateRoomResponse
 import com.example.sharing.domain.user.facade.UserFacade
@@ -20,18 +21,10 @@ class CreateRoomService(
     fun execute(userId: UUID): CreateRoomResponse {
         val userA = userFacade.getCurrentUser()
         val userB = userFacade.getUserById(userId)
+        val room = roomRepository.save(Room(UUID.randomUUID(), PRIVATE, "", LocalDateTime.now()))
 
         roomFacade.checkRoomExist(userA, userB)
 
-        val room = roomRepository.save(Room(
-            id = UUID.randomUUID(),
-            userA = userA,
-            userB = userB,
-            lastText = "",
-            lastSendAt = LocalDateTime.now(),
-            lastReadAt = LocalDateTime.now()
-        ))
-
-        return CreateRoomResponse(roomId = room.id)
+        return CreateRoomResponse(room.id)
     }
 }
