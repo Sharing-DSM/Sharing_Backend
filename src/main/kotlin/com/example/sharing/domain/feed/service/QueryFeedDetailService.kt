@@ -21,11 +21,14 @@ class QueryFeedDetailService(
             title = feed.title,
             recruitment = feed.recruitment,
             addressName = feed.addressName,
+            roadAddressName = feed.roadAddressName,
+            x = feed.x,
+            y = feed.y,
             volunteerTime = feed.volunteerTime,
             content = feed.content,
             isEmergency = feed.isEmergency,
             userId = feed.user.id,
-            isMine = getIsMine(feed.user.id),
+            isMine = getIsMine(feed.user.id)
         )
     }
 
