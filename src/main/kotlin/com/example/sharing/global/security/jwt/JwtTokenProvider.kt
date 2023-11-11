@@ -70,13 +70,12 @@ class JwtTokenProvider(
         }
     }
 
-    fun resolveToken(socketIOClient: SocketIOClient): String? {
+    fun resolveToken(socketIOClient: SocketIOClient): String {
         val bearer = socketIOClient.handshakeData.httpHeaders.get(jwtProperties.header)
-        return if (bearer != null && bearer.startsWith(jwtProperties.prefix)) {
-            bearer.replace(jwtProperties.prefix, "")
-        } else {
-            null
+        if (bearer != null && bearer.startsWith(jwtProperties.prefix) && bearer.length == jwtProperties.prefix.length + 1) {
+            return bearer.substring(jwtProperties.prefix.length + 1)
         }
+        return null.toString()
     }
 
     private fun getTokenSubject(subject: String): String {
