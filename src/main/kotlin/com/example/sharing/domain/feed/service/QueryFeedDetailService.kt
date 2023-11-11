@@ -24,6 +24,7 @@ class QueryFeedDetailService(
             roadAddressName = feed.roadAddressName,
             x = feed.x,
             y = feed.y,
+            type = feed.type,
             volunteerTime = feed.volunteerTime,
             content = feed.content,
             isEmergency = feed.isEmergency,
