@@ -18,10 +18,10 @@ class SocketConnectListener(
     fun onConnect(socketIOClient: SocketIOClient) {
         val token = jwtTokenProvider.resolveToken(socketIOClient)
         val authorization = jwtTokenProvider.authorization(token)
-        val accountId = authorization.name
-        val user = userFacade.getByAccountId(accountId!!)
+        val accountId = authorization?.name
+        val user = accountId?.let { userFacade.getByAccountId(it) }
 
-        socketIOClient.set("user", user.id)
-        socketRoomFacade.joinRoom(socketIOClient,user, UUID.randomUUID())
+        socketIOClient.set("user", user?.id)
+        socketRoomFacade.joinRoom(socketIOClient, UUID.randomUUID())
     }
 }

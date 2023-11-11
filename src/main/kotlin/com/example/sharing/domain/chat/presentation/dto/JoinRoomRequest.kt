@@ -1,7 +1,7 @@
 package com.example.sharing.domain.chat.presentation.dto
 
-data class SendChatRequest(
-    val message: String
+data class JoinRoomRequest(
+    val roomId: String
 ) {
     constructor() : this(String())
 }

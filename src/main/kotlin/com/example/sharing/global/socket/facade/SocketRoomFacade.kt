@@ -2,7 +2,6 @@ package com.example.sharing.global.socket.facade
 
 import com.corundumstudio.socketio.SocketIOClient
 import com.example.sharing.domain.chat.facade.RoomFacade
-import com.example.sharing.domain.user.domain.User
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -10,7 +9,7 @@ import java.util.*
 class SocketRoomFacade(
     private val roomFacade: RoomFacade,
 ) {
-    fun joinRoom(socketIOClient: SocketIOClient, user: User, roomId: UUID) {
+    fun joinRoom(socketIOClient: SocketIOClient, roomId: UUID) {
         val room = roomFacade.getRoomById(roomId)
 
         roomFacade.checkRoomExist(room.userA, room.userB)

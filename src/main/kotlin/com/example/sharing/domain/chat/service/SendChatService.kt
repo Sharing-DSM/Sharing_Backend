@@ -21,7 +21,7 @@ class SendChatService(
 ) {
     @Transactional
     fun execute(socketIOServer: SocketIOServer, socketIOClient: SocketIOClient, request: SendChatRequest) {
-        val user = userFacade.getCurrentUser()
+        val user = userFacade.getCurrentUser(socketIOClient)
         val room = roomFacade.getCurrentRoom(socketIOClient)
         val chat = chatRepository.save(
             Chat(

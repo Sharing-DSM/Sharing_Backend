@@ -6,7 +6,7 @@ import com.example.sharing.domain.chat.exception.RoomNotfoundException
 import java.util.*
 
 object SocketUtil {
-    fun getUserId(socketIOClient: SocketIOClient) {
+    fun getUserId(socketIOClient: SocketIOClient): UUID {
         if(!socketIOClient.has("user")) {
             throw InvalidUserException.EXCEPTION
         }
