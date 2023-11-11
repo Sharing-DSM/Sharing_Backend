@@ -19,6 +19,7 @@ class SocketExceptionListener : ExceptionListener {
 
     override fun onConnectException(e: Exception, client: SocketIOClient) {
         runException(e, client)
+        client.disconnect()
     }
 
     override fun onPingException(e: Exception, client: SocketIOClient) {

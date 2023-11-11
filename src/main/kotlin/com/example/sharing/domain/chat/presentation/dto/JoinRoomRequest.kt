@@ -1,7 +1,9 @@
 package com.example.sharing.domain.chat.presentation.dto
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import java.util.*
+
 data class JoinRoomRequest(
-    val roomId: String
-) {
-    constructor() : this(String())
-}
+    @JsonProperty("room_id")
+    val roomId: UUID
+)

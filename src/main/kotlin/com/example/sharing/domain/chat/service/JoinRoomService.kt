@@ -6,7 +6,6 @@ import com.example.sharing.domain.user.facade.UserFacade
 import com.example.sharing.global.socket.facade.SocketRoomFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 
 @Service
 class JoinRoomService(
@@ -15,6 +14,6 @@ class JoinRoomService(
 ) {
     @Transactional
     fun execute(socketIOClient: SocketIOClient, request: JoinRoomRequest) {
-        socketRoomFacade.joinRoom(socketIOClient, UUID.fromString(request.roomId))
+        socketRoomFacade.joinRoom(socketIOClient, request.roomId)
     }
 }
