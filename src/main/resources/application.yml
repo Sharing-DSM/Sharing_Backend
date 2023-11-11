@@ -51,6 +51,3 @@ kakao:
 
 socket:
   port: ${SOCKET_PORT}
-
-server:
-  port: 9999
