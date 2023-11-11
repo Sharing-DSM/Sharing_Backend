@@ -24,7 +24,11 @@ class CreateRoomService(
     fun execute(userId: UUID): CreateRoomResponse {
         val userA = userFacade.getCurrentUser()
         val userB = userFacade.getUserById(userId)
-        val room = roomRepository.save(Room(UUID.randomUUID(), PRIVATE, "", LocalDateTime.now()))
+        val room = roomRepository.save(Room(
+            id = UUID.randomUUID(),
+            roomType = PRIVATE,
+            lastText = "",
+            lastSendAt = LocalDateTime.now()))
 
         roomFacade.checkRoomExist(userA, userB)
 
