@@ -2,9 +2,13 @@ package com.example.sharing.domain.schedule.presentation
 
 import com.example.sharing.domain.schedule.presentation.dto.request.CreateScheduleRequest
 import com.example.sharing.domain.schedule.presentation.dto.request.UpdateScheduleRequest
+import com.example.sharing.domain.schedule.presentation.dto.response.QueryIsCompletedScheduleResponse
+import com.example.sharing.domain.schedule.presentation.dto.response.QueryScheduleResponse
 import com.example.sharing.domain.schedule.service.CheckScheduleService
 import com.example.sharing.domain.schedule.service.CreateScheduleService
 import com.example.sharing.domain.schedule.service.DeleteScheduleService
+import com.example.sharing.domain.schedule.service.QueryIsCompletedScheduleService
+import com.example.sharing.domain.schedule.service.QueryScheduleService
 import com.example.sharing.domain.schedule.service.UpdateScheduleService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.*
@@ -18,6 +22,8 @@ class ScheduleController (
     private val updateScheduleService: UpdateScheduleService,
     private val deleteScheduleService: DeleteScheduleService,
     private val checkScheduleService: CheckScheduleService,
+    private val queryIsCompletedScheduleService: QueryIsCompletedScheduleService,
+    private val queryScheduleService: QueryScheduleService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping
@@ -41,5 +47,15 @@ class ScheduleController (
     @PutMapping("/check/{schedule-id}")
     fun checkSchedule(@PathVariable ("schedule-id") scheduleId: UUID) {
         checkScheduleService.execute(scheduleId)
+    }
+
+    @GetMapping("/is-completed")
+    fun queryIsCompletedSchedules(): QueryIsCompletedScheduleResponse {
+        return queryIsCompletedScheduleService.execute()
+    }
+
+    @GetMapping
+    fun querySchedules(): QueryScheduleResponse {
+        return queryScheduleService.execute()
     }
 }
