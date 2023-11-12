@@ -7,5 +7,7 @@ data class FeedElement(
     val id: UUID,
     val title: String,
     val addressName: String,
+    val x: Double,
+    val y: Double,
     val type: Type,
 )
