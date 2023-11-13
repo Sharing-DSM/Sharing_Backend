@@ -2,6 +2,7 @@ package com.example.sharing.domain.feed.presentation
 
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
+import com.example.sharing.domain.feed.presentation.dto.request.QueryFeedByMapRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
@@ -89,9 +89,9 @@ class FeedController(
         return queryFeedByInterestAreaService.execute()
     }
 
-    @GetMapping("/map")
-    fun getFeedListByMap(@RequestParam("location") location: String): List<FeedElement> {
-        return queryFeedListByMapService.execute(location)
+    @PostMapping("/map")
+    fun getFeedListByMap(@RequestBody @Valid request: QueryFeedByMapRequest): List<FeedElement> {
+        return queryFeedListByMapService.execute(request)
     }
 
     @GetMapping("/mine")
