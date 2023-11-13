@@ -12,6 +12,7 @@ import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.QueryFeedListByMapService
+import com.example.sharing.domain.feed.service.QueryMyFeedListService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import com.example.sharing.domain.feed.service.UserApplyService
@@ -40,7 +41,8 @@ class FeedController(
     private val queryFeedDetailService: QueryFeedDetailService,
     private val queryFeedByViewsService: QueryFeedByViewsService,
     private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
-    private val queryFeedListByMapService: QueryFeedListByMapService
+    private val queryFeedListByMapService: QueryFeedListByMapService,
+    private val queryMyFeedListService: QueryMyFeedListService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -90,5 +92,10 @@ class FeedController(
     @GetMapping("/map")
     fun getFeedListByMap(@RequestParam("location") location: String): List<FeedElement> {
         return queryFeedListByMapService.execute(location)
+    }
+
+    @GetMapping("/mine")
+    fun getMyFeedList(): List<FeedElement> {
+        return queryMyFeedListService.execute()
     }
 }
