@@ -4,6 +4,7 @@ import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedReques
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryFeedByMapRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.sharing.domain.feed.presentation.dto.response.ApplyElement
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
@@ -13,6 +14,7 @@ import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
 import com.example.sharing.domain.feed.service.QueryFeedListByMapService
+import com.example.sharing.domain.feed.service.QueryMyApplyFeedListService
 import com.example.sharing.domain.feed.service.QueryMyFeedListService
 import com.example.sharing.domain.feed.service.SearchAddressService
 import com.example.sharing.domain.feed.service.UpdateFeedService
@@ -43,6 +45,7 @@ class FeedController(
     private val queryFeedByInterestAreaService: QueryFeedByInterestAreaService,
     private val queryFeedListByMapService: QueryFeedListByMapService,
     private val queryMyFeedListService: QueryMyFeedListService,
+    private val queryMyApplyFeedListService: QueryMyApplyFeedListService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -97,5 +100,10 @@ class FeedController(
     @GetMapping("/mine")
     fun getMyFeedList(): List<FeedElement> {
         return queryMyFeedListService.execute()
+    }
+
+    @GetMapping("/apply")
+    fun getMyApplyFeed(): List<ApplyElement> {
+        return queryMyApplyFeedListService.execute()
     }
 }

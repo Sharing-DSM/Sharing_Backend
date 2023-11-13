@@ -3,6 +3,7 @@ package com.example.sharing.domain.feed.domain
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -23,7 +24,10 @@ class Apply (
 
     user: User,
 
-    feed: Feed
+    feed: Feed,
+
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    val appliedAt: LocalDateTime = LocalDateTime.now()
 
 ) {
     @ManyToOne(fetch = FetchType.LAZY)

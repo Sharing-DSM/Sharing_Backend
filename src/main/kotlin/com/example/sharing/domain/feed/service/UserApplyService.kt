@@ -6,6 +6,7 @@ import com.example.sharing.domain.feed.facade.FeedFacade
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
 import java.util.*
 
 @Service
@@ -19,6 +20,6 @@ class UserApplyService(
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getByFeedId(feedId)
 
-        applyRepository.save(Apply(UUID.randomUUID(), user, feed))
+        applyRepository.save(Apply(UUID.randomUUID(), user, feed, LocalDateTime.now()))
     }
 }
