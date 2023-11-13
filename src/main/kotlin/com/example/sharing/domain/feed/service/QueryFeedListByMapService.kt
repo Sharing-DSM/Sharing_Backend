@@ -6,6 +6,7 @@ import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.global.utils.openfeign.client.KakaoAddressFeign
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import kotlin.streams.toList
 
 @Service
 class QueryFeedListByMapService(
