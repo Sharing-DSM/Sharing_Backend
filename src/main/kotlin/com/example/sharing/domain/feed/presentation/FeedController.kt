@@ -67,7 +67,7 @@ class FeedController(
     }
 
     @ResponseStatus(CREATED)
-    @PostMapping("/{feed-id}")
+    @PostMapping("/apply/{feed-id}")
     fun apply(@PathVariable("feed-id") feedId: UUID) {
         userApplyService.execute(feedId)
     }
