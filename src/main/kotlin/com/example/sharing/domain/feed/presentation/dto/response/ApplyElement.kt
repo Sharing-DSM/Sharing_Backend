@@ -9,8 +9,6 @@ data class ApplyElement(
     val feedId: UUID,
     val feedTitle: String,
     val feedAddressName: String,
-    val feedX: Double,
-    val feedY: Double,
     val feedType: Type,
     val appliedAt: LocalDateTime
 )
