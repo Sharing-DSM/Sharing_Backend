@@ -10,6 +10,7 @@ import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressRes
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.DeleteFeedService
+import com.example.sharing.domain.feed.service.QueryEmergencyFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
 import com.example.sharing.domain.feed.service.QueryFeedDetailService
@@ -46,6 +47,7 @@ class FeedController(
     private val queryFeedListByMapService: QueryFeedListByMapService,
     private val queryMyFeedListService: QueryMyFeedListService,
     private val queryMyApplyFeedListService: QueryMyApplyFeedListService,
+    private val queryEmergencyFeedService: QueryEmergencyFeedService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -105,5 +107,10 @@ class FeedController(
     @GetMapping("/apply")
     fun getMyApplyFeed(): List<ApplyElement> {
         return queryMyApplyFeedListService.execute()
+    }
+
+    @GetMapping("/emergency")
+    fun getEmergencyFeed(): List<FeedElement> {
+        return queryEmergencyFeedService.execute()
     }
 }

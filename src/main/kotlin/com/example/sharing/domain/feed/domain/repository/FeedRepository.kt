@@ -12,4 +12,5 @@ interface FeedRepository: JpaRepository<Feed, UUID> {
     fun findTop3ByOrderByViewsDesc(): List<FeedElement>
     fun findAllByAddressNameContaining(addressName: String): List<FeedElement>
     fun findAllByUser(user: User) : List<FeedElement>
+    fun findAllByIsEmergency(isEmergency: Boolean): List<FeedElement>
 }
