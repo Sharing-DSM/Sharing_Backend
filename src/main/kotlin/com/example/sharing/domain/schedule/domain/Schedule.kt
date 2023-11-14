@@ -46,7 +46,7 @@ class Schedule (
         this.date = date
     }
 
-    fun updateIsCompleted(isComleted: Boolean) {
+    fun updateIsCompleted(isCompleted: Boolean) {
         this.isCompleted = isCompleted
     }
 }
