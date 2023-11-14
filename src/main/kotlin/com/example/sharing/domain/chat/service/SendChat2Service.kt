@@ -35,7 +35,8 @@ class SendChat2Service(
                 id = UUID.randomUUID(),
                 text = request.message,
                 user = user,
-                room = room
+                room = room,
+                sendAt = LocalDateTime.now()
 
             )
         )

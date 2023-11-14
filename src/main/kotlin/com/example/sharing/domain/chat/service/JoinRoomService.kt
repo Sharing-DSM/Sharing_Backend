@@ -15,6 +15,7 @@ class JoinRoomService(
     @Transactional
     fun execute(socketIOClient: SocketIOClient, request: JoinRoomRequest) {
         val user = userFacade.getCurrentUser(socketIOClient)
+
         if (request.isJoinRoom) {
             socketRoomFacade.joinRoom(socketIOClient, request.roomId, user)
         } else {

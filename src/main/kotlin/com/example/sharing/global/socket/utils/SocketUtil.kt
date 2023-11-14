@@ -20,6 +20,6 @@ object SocketUtil {
             throw RoomNotfoundException.EXCEPTION
         }
 
-        return socketIOClient.get("user") as UUID
+        return socketIOClient.get("room") as UUID
     }
 }

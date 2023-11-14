@@ -3,6 +3,7 @@ package com.example.sharing.domain.chat.domain
 import com.example.sharing.domain.user.domain.User
 import org.hibernate.annotations.DynamicInsert
 import org.hibernate.annotations.GenericGenerator
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -26,6 +27,9 @@ class Chat(
 
     user: User,
     room: Room,
+
+    @Column(columnDefinition = "DATETIME", nullable = false)
+    val sendAt: LocalDateTime = LocalDateTime.now()
 ) {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id", columnDefinition = "BINARY(16)", nullable = false)
