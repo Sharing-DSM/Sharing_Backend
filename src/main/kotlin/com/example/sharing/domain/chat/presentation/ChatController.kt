@@ -1,5 +1,6 @@
 package com.example.sharing.domain.chat.presentation
 
+import com.example.sharing.domain.chat.presentation.dto.QueryChatListResponse
 import com.example.sharing.domain.chat.service.CreateRoomService
 import com.example.sharing.domain.chat.service.QueryChatListService
 import com.example.sharing.domain.chat.service.QueryMyRoomListService
@@ -24,7 +25,7 @@ class ChatController(
     fun createRoom(@PathVariable("user-id") userId: UUID) = createRoomService.execute(userId)
 
     @GetMapping("/{room-id}")
-    fun queryChatList(@PathVariable("room-id") roomId: UUID) = queryChatListService.execute(roomId)
+    fun queryChatList(@PathVariable("room-id") roomId: UUID): QueryChatListResponse = queryChatListService.execute(roomId)
 
     @GetMapping("/room")
     fun queryMyRoom() = queryMyRoomListService.execute()
