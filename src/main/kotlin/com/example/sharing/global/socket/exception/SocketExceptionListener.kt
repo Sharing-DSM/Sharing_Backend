@@ -6,7 +6,6 @@ import com.example.sharing.global.error.ErrorResponse
 import com.example.sharing.global.error.exception.ErrorCode
 import com.example.sharing.global.error.exception.SharingException
 import io.netty.channel.ChannelHandlerContext
-import java.util.*
 
 class SocketExceptionListener : ExceptionListener {
     override fun onEventException(e: Exception, args: MutableList<Any>?, client: SocketIOClient) {
@@ -35,8 +34,6 @@ class SocketExceptionListener : ExceptionListener {
         println(e.message)
         println(e.javaClass)
         println(e.cause?.message)
-
-        Arrays.stream(e.cause?.stackTrace).forEach { println() }
 
         val errorCode = if (e.cause is SharingException) {
             (e.cause as SharingException).errorCode

@@ -15,8 +15,8 @@ class SocketConnectListener(
 ) {
     @OnConnect
     fun onConnect(socketIOClient: SocketIOClient) {
-        val token: String? = jwtTokenProvider.resolveToken(socketIOClient)
-        val authorization = jwtTokenProvider.authorization(token)
+        val token = jwtTokenProvider.resolveToken(socketIOClient)
+        val authorization = jwtTokenProvider.getAuthentication(token!!)
         val accountId = authorization.name
         val user = userFacade.getByAccountId(accountId)
 
