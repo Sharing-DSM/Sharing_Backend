@@ -9,10 +9,11 @@ data class RoomResponse(
     val lastChat: String,
     val lastSendAt: LocalDateTime?,
     val isRead: Boolean,
-    val roomName: String
+    val roomName: String,
+    val userProfile: String?,
 ) {
     companion object {
-        fun of(roomUser: RoomUser, roomName: String): RoomResponse {
+        fun of(roomUser: RoomUser, roomName: String, userProfile: String?): RoomResponse {
             val user = roomUser.user
             val room = roomUser.room
             return RoomResponse(
@@ -20,7 +21,8 @@ data class RoomResponse(
                 lastChat = room.lastText,
                 lastSendAt = room.lastSendAt,
                 isRead = room.lastSendAt.isBefore(roomUser.lastReadAt),
-                roomName = roomName
+                roomName = roomName,
+                userProfile = userProfile
             )
         }
     }

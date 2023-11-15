@@ -18,10 +18,11 @@ class QueryMyRoomListService(
     @Transactional(readOnly = true)
     fun execute(): QueryMyRoomListResponse {
         val user = userFacade.getCurrentUser()
+        val userB = privateRoomRepository.findByUserA(user).userB
         return QueryMyRoomListResponse(
             roomUserRepository.findAllByUser(user)
                 .stream()
-                .map { RoomResponse.of(it, privateRoomRepository.findByUserA(user).userB.name) }
+                .map { RoomResponse.of(it, userB.name, userB.profile) }
                 .collect(Collectors.toList())
         )
     }
