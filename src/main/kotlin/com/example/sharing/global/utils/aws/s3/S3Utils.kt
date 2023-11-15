@@ -24,7 +24,7 @@ class S3Utils(
     @Value("\${cloud.aws.s3.prefix}")
     private val prefix: String
 ) {
-    fun upload(file: MultipartFile, path: String): String {
+    fun upload(file: MultipartFile): String {
         val fileName = UUID.randomUUID().toString() + "-" + file.originalFilename
         val objMeta = ObjectMetadata()
 
@@ -34,8 +34,9 @@ class S3Utils(
         val byteArrayIs = ByteArrayInputStream(bytes)
 
         s3Client.putObject(
-            PutObjectRequest(bucketName, path + fileName, byteArrayIs, objMeta)
-                .withCannedAcl(CannedAccessControlList.PublicRead)
+            PutObjectRequest(bucketName, fileName, byteArrayIs, objMeta).withCannedAcl(
+                CannedAccessControlList.PublicRead
+            )
         )
 
         return s3Client.getUrl(bucketName, bucketName + fileName).toString()

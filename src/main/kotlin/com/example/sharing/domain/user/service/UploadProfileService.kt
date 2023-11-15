@@ -14,7 +14,7 @@ class UploadProfileService(
     @Transactional
     fun execute(file: MultipartFile): String {
         val user = userFacade.getCurrentUser()
-        val url = s3Utils.upload(file, "/")
+        val url = s3Utils.upload(file)
         user.update(url)
         return url
     }
