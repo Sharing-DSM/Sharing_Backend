@@ -30,6 +30,7 @@ dependencies {
     implementation(Dependencies.QUERYDSL)
     implementation(Dependencies.OPENFEIGN)
     implementation(Dependencies.SOCKET)
+    implementation(Dependencies.CLOUD_AWS)
     annotationProcessor(Dependencies.CONFIGURATION_PROCESSOR)
 }
 

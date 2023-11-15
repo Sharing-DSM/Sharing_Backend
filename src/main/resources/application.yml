@@ -24,6 +24,9 @@ spring:
 
   main:
     allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
 jwt:
   secret_key: ${JWT_SECRET_KEY}
   access_exp: ${JWT_ACCESS_EXP}
@@ -33,6 +36,20 @@ jwt:
 
 kakao:
   api-key: ${KAKAO_API_KEY}
+
+cloud:
+  aws:
+    s3:
+      prefix: ${AWS_S3_PREFIX:/}
+      bucket: ${AWS_S3_BUCKET:sharing-image/}
+      base-image-url: ${AWS_S3_URL:sharing-image}
+    region:
+      static: ${AWS_S3_REGION:ap-northeast-2}
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_S3_ACCESS:asdf}
+      secret-key: ${AWS_S3_SECRET:asdf}
 
 socket:
   port: ${SOCKET_PORT}

@@ -8,10 +8,12 @@ import com.example.sharing.domain.user.presentation.dto.response.TokenResponse
 import com.example.sharing.domain.user.service.QueryUserService
 import com.example.sharing.domain.user.service.SetInterestAreaService
 import com.example.sharing.domain.user.service.UpdateUserInfoService
+import com.example.sharing.domain.user.service.UploadProfileService
 import com.example.sharing.domain.user.service.UserLoginService
 import com.example.sharing.domain.user.service.UserSignUpService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 import java.util.*
 import javax.validation.Valid
 
@@ -23,6 +25,7 @@ class UserController(
     private val setInterestAreaService: SetInterestAreaService,
     private val queryUserService: QueryUserService,
     private val updateUserInfoService: UpdateUserInfoService,
+    private val uploadProfileService: UploadProfileService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping("/signup")
@@ -47,4 +50,9 @@ class UserController(
     @ResponseStatus(NO_CONTENT)
     @PatchMapping
     fun updateUserInfo(@RequestBody @Valid request: UpdateUserInfoRequest) = updateUserInfoService.execute(request)
+
+    @PostMapping("/upload")
+    fun uploadProfile(@RequestPart(name = "profile") file: MultipartFile): String {
+        return uploadProfileService.execute(file)
+    }
 }

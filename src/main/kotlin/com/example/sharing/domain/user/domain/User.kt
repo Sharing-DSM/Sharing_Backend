@@ -48,4 +48,8 @@ class User(
         this.name = name
         this.age = age
     }
+
+    fun update(profile: String) {
+        this.profile = profile
+    }
 }
