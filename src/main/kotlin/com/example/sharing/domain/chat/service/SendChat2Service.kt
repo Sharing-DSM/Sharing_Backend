@@ -47,7 +47,7 @@ class SendChat2Service(
         socketIOServer.getRoomOperations(room.id.toString())
             .clients.forEach { client ->
                 try {
-                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient)))
+                    client.sendEvent("chat2", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient)))
                 } catch (ignore: JsonProcessingException) {
                     val clientRoomUser = roomUserFacade.getByRoomAndUser(room.id, SocketUtil.getUserId(client))
                     clientRoomUser.updateLastReadAt(LocalDateTime.now())

@@ -14,7 +14,6 @@ data class RoomResponse(
 ) {
     companion object {
         fun of(roomUser: RoomUser, roomName: String, userProfile: String?): RoomResponse {
-            val user = roomUser.user
             val room = roomUser.room
             return RoomResponse(
                 roomId = room.id,
