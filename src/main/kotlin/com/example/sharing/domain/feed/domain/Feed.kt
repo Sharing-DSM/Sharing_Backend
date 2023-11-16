@@ -87,7 +87,7 @@ class Feed(
         this.type = type
     }
 
-    fun plusViews(add: Int) {
-        this.views = views + add
+    fun updateViewsCount() {
+        this.views++
     }
 }

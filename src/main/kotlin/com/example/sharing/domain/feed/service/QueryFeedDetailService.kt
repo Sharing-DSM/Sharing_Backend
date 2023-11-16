@@ -12,10 +12,10 @@ class QueryFeedDetailService(
     private val feedFacade: FeedFacade,
     private val userFacade: UserFacade,
 ) {
-    @Transactional(readOnly = true)
+    @Transactional
     fun execute(feedId: UUID): QueryFeedDetailResponse {
         val feed = feedFacade.getByFeedId(feedId)
-        feed.plusViews(1)
+        feed.updateViewsCount()
 
         return QueryFeedDetailResponse(
             feedId = feed.id,
