@@ -35,7 +35,8 @@ class CreateRoomService(
 
         roomFacade.checkRoomExist(userA, userB)
 
-        privateRoomRepository.save(PrivateRoom(UUID.randomUUID(),userA, userB, room))
+        privateRoomRepository.save(PrivateRoom(UUID.randomUUID(), userA, userB, room))
+        privateRoomRepository.save(PrivateRoom(UUID.randomUUID(), userB, userA, room))
         roomUserRepository.save(RoomUser(id = UUID.randomUUID(), room = room, user = userA))
         roomUserRepository.save(RoomUser(id = UUID.randomUUID(), room = room, user = userB))
 

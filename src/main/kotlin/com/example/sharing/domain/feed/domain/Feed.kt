@@ -86,4 +86,8 @@ class Feed(
         this.isEmergency = isEmergency
         this.type = type
     }
+
+    fun plusViews(add: Int) {
+        this.views = views + add
+    }
 }
