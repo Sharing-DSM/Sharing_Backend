@@ -6,6 +6,6 @@ import com.example.sharing.global.error.exception.SharingException
 class RoomAlreadyExistsException: SharingException(ALREADY_ROOM_EXISTS) {
     companion object {
         @JvmField
-        val EXCEPTION = RoomNotfoundException()
+        val EXCEPTION = RoomAlreadyExistsException()
     }
 }
