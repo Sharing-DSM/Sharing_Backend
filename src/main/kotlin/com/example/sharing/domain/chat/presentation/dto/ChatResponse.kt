@@ -10,15 +10,18 @@ data class ChatResponse(
     val isMine: Boolean,
     val message: String,
     @JsonProperty(value = "send_at")
-    val sendAt: LocalDateTime
+    val sendAt: LocalDateTime,
+    @JsonProperty(value = "user_name")
+    val userName: String
 ) {
     companion object {
-        fun of(chat: Chat, isMine: Boolean): ChatResponse {
+        fun of(chat: Chat, isMine: Boolean, userName: String): ChatResponse {
             return ChatResponse(
                 roomId = chat.room.id,
                 isMine = isMine,
                 message = chat.text,
-                sendAt = chat.sendAt
+                sendAt = chat.sendAt,
+                userName = userName
             )
         }
     }

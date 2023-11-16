@@ -4,6 +4,7 @@ import com.corundumstudio.socketio.SocketIOClient
 import com.corundumstudio.socketio.SocketIOServer
 import com.example.sharing.domain.chat.domain.Chat
 import com.example.sharing.domain.chat.domain.repository.ChatRepository
+import com.example.sharing.domain.chat.domain.repository.PrivateRoomRepository
 import com.example.sharing.domain.chat.facade.RoomFacade
 import com.example.sharing.domain.chat.facade.RoomUserFacade
 import com.example.sharing.domain.chat.presentation.dto.ChatResponse
@@ -20,6 +21,7 @@ import java.util.*
 @Service
 class SendChat2Service(
     private val chatRepository: ChatRepository,
+    private val privateRoomRepository: PrivateRoomRepository,
     private val userFacade: UserFacade,
     private val roomFacade: RoomFacade,
     private val roomUserFacade: RoomUserFacade,
@@ -30,6 +32,7 @@ class SendChat2Service(
         val user = userFacade.getCurrentUser(socketIOClient)
         val room = roomFacade.getCurrentRoom(socketIOClient)
         val roomUser = roomUserFacade.getByRoomAndUser(room.id, user.id)
+        val userB = privateRoomRepository.findByUserA(user).userB
         val chat = chatRepository.save(
             Chat(
                 id = UUID.randomUUID(),
@@ -47,7 +50,7 @@ class SendChat2Service(
         socketIOServer.getRoomOperations(room.id.toString())
             .clients.forEach { client ->
                 try {
-                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient)))
+                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient, userB.name)))
                 } catch (ignore: JsonProcessingException) {
                     val clientRoomUser = roomUserFacade.getByRoomAndUser(room.id, SocketUtil.getUserId(client))
                     clientRoomUser.updateLastReadAt(LocalDateTime.now())
