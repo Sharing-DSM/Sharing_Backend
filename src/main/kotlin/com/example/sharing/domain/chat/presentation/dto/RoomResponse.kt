@@ -1,6 +1,7 @@
 package com.example.sharing.domain.chat.presentation.dto
 
 import com.example.sharing.domain.chat.domain.RoomUser
+import com.example.sharing.domain.user.domain.User
 import java.time.LocalDateTime
 import java.util.*
 
@@ -13,15 +14,15 @@ data class RoomResponse(
     val userProfile: String,
 ) {
     companion object {
-        fun of(roomUser: RoomUser, roomName: String, userProfile: String): RoomResponse {
+        fun of(roomUser: RoomUser, userB: User): RoomResponse {
             val room = roomUser.room
             return RoomResponse(
                 roomId = room.id,
                 lastChat = room.lastText,
                 lastSendAt = room.lastSendAt,
                 isRead = room.lastSendAt.isBefore(roomUser.lastReadAt),
-                roomName = roomName,
-                userProfile = userProfile
+                roomName = userB.name,
+                userProfile = userB.profile
             )
         }
     }
