@@ -7,13 +7,13 @@ import java.util.*
 data class RoomResponse(
     val roomId: UUID,
     val lastChat: String,
-    val lastSendAt: LocalDateTime?,
+    val lastSendAt: LocalDateTime,
     val isRead: Boolean,
     val roomName: String,
-    val userProfile: String?,
+    val userProfile: String,
 ) {
     companion object {
-        fun of(roomUser: RoomUser, roomName: String, userProfile: String?): RoomResponse {
+        fun of(roomUser: RoomUser, roomName: String, userProfile: String): RoomResponse {
             val room = roomUser.room
             return RoomResponse(
                 roomId = room.id,
