@@ -37,7 +37,7 @@ class User(
     var interestArea: String?,
 
     @field:Length(max = 2000)
-    var profile: String?,
+    var profile: String,
 ) {
     fun updateInterestArea(interestArea: String) {
         this.interestArea = interestArea

@@ -29,7 +29,7 @@ class UserSignUpService(
                 password = passwordEncoder.encode(request.password),
                 name = request.name,
                 age = request.age,
-                profile = null,
+                profile = "",
                 interestArea = null
             )
         )
