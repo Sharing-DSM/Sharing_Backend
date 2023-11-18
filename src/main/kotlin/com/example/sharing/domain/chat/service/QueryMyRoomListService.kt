@@ -4,6 +4,7 @@ import com.example.sharing.domain.chat.domain.repository.PrivateRoomRepository
 import com.example.sharing.domain.chat.domain.repository.RoomUserRepository
 import com.example.sharing.domain.chat.presentation.dto.QueryMyRoomListResponse
 import com.example.sharing.domain.chat.presentation.dto.RoomResponse
+import com.example.sharing.domain.user.exception.UserNotFoundException
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -23,8 +24,9 @@ class QueryMyRoomListService(
         return QueryMyRoomListResponse(
             roomUserRepository.findAllByUser(user)
                 .stream()
-                .flatMap { roomUser ->
-                    userBList.stream().map { RoomResponse.of(roomUser, it.userB) }
+                .map { roomUser ->
+                    val matchedUserB = userBList.find { it.userA == roomUser.user || it.userB == roomUser.user }
+                    RoomResponse.of(roomUser, matchedUserB?.userB ?: throw UserNotFoundException.EXCEPTION)
                 }
                 .collect(Collectors.toList()))
     }
