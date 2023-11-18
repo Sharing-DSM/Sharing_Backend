@@ -24,7 +24,8 @@ class QueryMyRoomListService(
             roomUserRepository.findAllByUser(user)
                 .stream()
                 .flatMap { roomUser ->
-                    userBList.stream().map { RoomResponse.of(roomUser, it.userB) }}
+                    userBList.stream().map { RoomResponse.of(roomUser, it.userB) }
+                }
                 .collect(Collectors.toList()))
     }
 }
