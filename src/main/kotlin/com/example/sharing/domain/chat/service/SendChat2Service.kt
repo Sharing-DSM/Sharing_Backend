@@ -32,7 +32,6 @@ class SendChat2Service(
         val user = userFacade.getCurrentUser(socketIOClient)
         val room = roomFacade.getCurrentRoom(socketIOClient)
         val roomUser = roomUserFacade.getByRoomAndUser(room.id, user.id)
-        val userB = privateRoomRepository.findByUserA(user).userB
         val chat = chatRepository.save(
             Chat(
                 id = UUID.randomUUID(),
@@ -50,7 +49,7 @@ class SendChat2Service(
         socketIOServer.getRoomOperations(room.id.toString())
             .clients.forEach { client ->
                 try {
-                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient, userB.name)))
+                    client.sendEvent("chat", objectMapper.writeValueAsString(ChatResponse.of(chat, client == socketIOClient)))
                 } catch (ignore: JsonProcessingException) {
                     val clientRoomUser = roomUserFacade.getByRoomAndUser(room.id, SocketUtil.getUserId(client))
                     clientRoomUser.updateLastReadAt(LocalDateTime.now())

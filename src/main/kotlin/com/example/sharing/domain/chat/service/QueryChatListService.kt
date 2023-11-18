@@ -9,7 +9,7 @@ import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
-import kotlin.streams.toList
+import java.util.stream.Collectors
 
 @Service
 class QueryChatListService(
@@ -22,21 +22,16 @@ class QueryChatListService(
     fun execute(roomId: UUID): QueryChatListResponse {
         val user = userFacade.getCurrentUser()
         val room = roomFacade.getRoomById(roomId)
-        val roomUser = privateRoomRepository.findByUserA(user).userB
+        val roomUser = privateRoomRepository.findByRoomAndUserA(room, user).userB
 
         return QueryChatListResponse(
             chatRepository.findAllByRoom(room)
                 .stream()
                 .map { chat ->
-                    ChatResponse(
-                        roomId = chat.room.id,
-                        isMine = chat.user.id == user.id,
-                        message = chat.text,
-                        sendAt = chat.sendAt,
-                        userName = roomUser.name
-                    )
+                    ChatResponse.of(chat, chat.user.id == user.id)
                 }
-                .toList()
+                .collect(Collectors.toList()),
+            userName = roomUser.name
         )
     }
 }
