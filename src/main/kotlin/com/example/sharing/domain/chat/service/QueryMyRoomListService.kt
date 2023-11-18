@@ -28,6 +28,7 @@ class QueryMyRoomListService(
                         .filter { privateRoom -> privateRoom.userA == user && privateRoom.room == roomUser.room }
                         .map { RoomResponse.of(roomUser, it.userB) }
                 }
+                .sorted(compareBy { roomUser -> roomUser.lastSendAt })
                 .collect(Collectors.toList()))
     }
 }

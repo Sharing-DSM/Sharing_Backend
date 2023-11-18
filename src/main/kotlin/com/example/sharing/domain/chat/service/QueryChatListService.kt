@@ -35,7 +35,7 @@ class QueryChatListService(
                 .map { chat ->
                     ChatResponse.of(chat, chat.user.id == user.id)
                 }
-                .sorted()
+                .sorted(compareBy { chat -> chat.sendAt })
                 .collect(Collectors.toList()),
             userName = privateRoomRepository.findByRoomAndUserA(room, user).userB.name
         )
