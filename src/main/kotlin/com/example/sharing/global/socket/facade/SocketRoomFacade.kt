@@ -27,8 +27,8 @@ class SocketRoomFacade(
             .stream()
             .map { it }
             .forEach { room ->
-                socketIOClient.set("room", room.id)
-                socketIOClient.joinRoom(room.id.toString())
+                socketIOClient.set("room", room.room.id)
+                socketIOClient.joinRoom(room.room.id.toString())
             }
     }
 }
