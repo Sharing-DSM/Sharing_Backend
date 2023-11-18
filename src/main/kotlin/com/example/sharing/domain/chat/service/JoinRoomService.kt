@@ -17,7 +17,7 @@ class JoinRoomService(
         val user = userFacade.getCurrentUser(socketIOClient)
 
         if (request.isJoinRoom) {
-            socketRoomFacade.joinRoom(socketIOClient, request.roomId, user)
+            socketRoomFacade.joinRoom(socketIOClient, request.roomId!!, user)
         } else {
             socketRoomFacade.joinAllRoom(socketIOClient, user)
         }
