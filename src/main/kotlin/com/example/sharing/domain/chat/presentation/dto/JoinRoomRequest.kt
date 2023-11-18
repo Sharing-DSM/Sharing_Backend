@@ -5,7 +5,7 @@ import java.util.*
 
 data class JoinRoomRequest(
     @JsonProperty("room_id")
-    val roomId: UUID,
+    val roomId: UUID?,
 
     @JsonProperty("is_join_room")
     val isJoinRoom: Boolean
