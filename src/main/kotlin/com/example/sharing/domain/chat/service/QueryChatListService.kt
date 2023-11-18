@@ -9,6 +9,7 @@ import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
+import kotlin.streams.toList
 
 @Service
 class QueryChatListService(
@@ -28,11 +29,11 @@ class QueryChatListService(
                 .stream()
                 .map { chat ->
                     ChatResponse(
-                        chat.room.id,
-                        chat.user.id == user.id,
-                        chat.text,
-                        chat.sendAt,
-                        roomUser.name
+                        roomId = chat.room.id,
+                        isMine = chat.user.id == user.id,
+                        message = chat.text,
+                        sendAt = chat.sendAt,
+                        userName = roomUser.name
                     )
                 }
                 .toList()
