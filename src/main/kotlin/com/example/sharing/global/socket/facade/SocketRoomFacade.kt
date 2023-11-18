@@ -5,6 +5,7 @@ import com.example.sharing.domain.chat.facade.RoomFacade
 import com.example.sharing.domain.chat.facade.RoomUserFacade
 import com.example.sharing.domain.user.domain.User
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -20,6 +21,8 @@ class SocketRoomFacade(
         socketIOClient.allRooms.forEach(socketIOClient::leaveRoom)
         socketIOClient.set("room", roomId)
         socketIOClient.joinRoom(roomId.toString())
+
+        roomUserFacade.getByRoomAndUser(room.id, user.id).updateLastReadAt(LocalDateTime.now())
     }
 
     fun joinAllRoom(socketIOClient: SocketIOClient, user: User) {
