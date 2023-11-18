@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.*
 
 interface PrivateRoomRepository: JpaRepository<PrivateRoom, UUID> {
-    fun findByUserA(user: User): PrivateRoom
+    fun findAllByUserA(userA: User): List<PrivateRoom>
+    fun findByUserA(userA: User): PrivateRoom
     fun existsByUserAAndUserB(userA: User, userB: User): Boolean
 }
