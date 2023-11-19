@@ -4,7 +4,6 @@ import com.corundumstudio.socketio.SocketIOClient
 import com.corundumstudio.socketio.SocketIOServer
 import com.example.sharing.domain.chat.domain.Chat
 import com.example.sharing.domain.chat.domain.repository.ChatRepository
-import com.example.sharing.domain.chat.domain.repository.PrivateRoomRepository
 import com.example.sharing.domain.chat.facade.RoomFacade
 import com.example.sharing.domain.chat.facade.RoomUserFacade
 import com.example.sharing.domain.chat.presentation.dto.ChatResponse
@@ -21,7 +20,6 @@ import java.util.*
 @Service
 class SendChat2Service(
     private val chatRepository: ChatRepository,
-    private val privateRoomRepository: PrivateRoomRepository,
     private val userFacade: UserFacade,
     private val roomFacade: RoomFacade,
     private val roomUserFacade: RoomUserFacade,
@@ -43,7 +41,7 @@ class SendChat2Service(
             )
         )
 
-        room.updateLastTextAndLastSendAt(chat.text, LocalDateTime.now())
+        room.updateLastTextAndLastSendAt(chat.text, chat.sendAt)
         roomUser.updateLastReadAt(LocalDateTime.now())
 
         socketIOServer.getRoomOperations(room.id.toString())
