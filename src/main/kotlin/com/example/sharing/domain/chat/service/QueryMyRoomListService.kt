@@ -29,6 +29,7 @@ class QueryMyRoomListService(
                         .map { RoomResponse.of(roomUser, it.userB) }
                 }
                 .sorted(compareByDescending { roomUser -> roomUser.lastSendAt })
-                .collect(Collectors.toList()))
+                .collect(Collectors.toList())
+        )
     }
 }
