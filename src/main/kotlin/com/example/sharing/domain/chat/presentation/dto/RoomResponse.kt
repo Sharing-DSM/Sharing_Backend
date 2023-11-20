@@ -20,7 +20,7 @@ data class RoomResponse(
                 roomId = room.id,
                 lastChat = room.lastText,
                 lastSendAt = room.lastSendAt,
-                isRead = room.lastSendAt.isBefore(roomUser.lastReadAt),
+                isRead = room.lastSendAt.isBefore(roomUser.lastReadAt) or room.lastSendAt.isEqual(roomUser.lastReadAt),
                 roomName = userB.name,
                 userProfile = userB.profile
             )
