@@ -6,6 +6,7 @@ enum class ErrorCode(
 ) {
     PASSWORD_MISMATCED(400, "Password Mis Matched"),
     FEIGN_BAD_REQUEST(400, "Feign Bad Request"),
+    BAD_FILE_EXTENSION(400, "Bad File Extension"),
 
     TOKEN_EXPIRED(401, "Token Expired"),
     TOKEN_INVALID(401, "Token Invalid"),

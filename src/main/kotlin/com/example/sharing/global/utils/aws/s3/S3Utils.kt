@@ -5,6 +5,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList
 import com.amazonaws.services.s3.model.ObjectMetadata
 import com.amazonaws.services.s3.model.PutObjectRequest
 import com.amazonaws.util.IOUtils
+import com.example.sharing.global.utils.aws.s3.exception.BadFileExtensionException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
@@ -17,15 +18,10 @@ class S3Utils(
 
     @Value("\${cloud.aws.s3.bucket}")
     private val bucketName: String,
-
-    @Value("\${cloud.aws.s3.base-image-url}")
-    private val baseImageUrl: String,
-
-    @Value("\${cloud.aws.s3.prefix}")
-    private val prefix: String
 ) {
     fun upload(file: MultipartFile): String {
-        val fileName = UUID.randomUUID().toString() + "_" + file.originalFilename
+        val ext = verificationFile(file)
+        val fileName = UUID.randomUUID().toString() + "." + ext
         val objMeta = ObjectMetadata()
 
         val bytes = IOUtils.toByteArray(file.inputStream)
@@ -41,4 +37,15 @@ class S3Utils(
 
         return s3Client.getUrl(bucketName, bucketName + fileName).toString()
     }
+
+    private fun verificationFile(file: MultipartFile): String {
+        val originalFilename = file.originalFilename
+        val ext = originalFilename!!.substring(originalFilename.lastIndexOf(".") + 1)
+
+        if (!(ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "heic")) {
+            throw BadFileExtensionException.EXCEPTION
+        }
+        return ext
+    }
+
 }
