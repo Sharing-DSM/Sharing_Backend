@@ -30,7 +30,7 @@ class S3Utils(
         val byteArrayIs = ByteArrayInputStream(bytes)
 
         s3Client.putObject(
-            PutObjectRequest(bucketName, "/" + fileName, byteArrayIs, objMeta).withCannedAcl(
+            PutObjectRequest(bucketName, fileName, byteArrayIs, objMeta).withCannedAcl(
                 CannedAccessControlList.PublicRead
             )
         )
