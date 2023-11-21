@@ -18,6 +18,7 @@ import com.example.sharing.domain.feed.service.QueryFeedListByMapService
 import com.example.sharing.domain.feed.service.QueryMyApplyFeedListService
 import com.example.sharing.domain.feed.service.QueryMyFeedListService
 import com.example.sharing.domain.feed.service.SearchAddressService
+import com.example.sharing.domain.feed.service.SearchTitleFeedService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import com.example.sharing.domain.feed.service.UserApplyService
 import org.springframework.http.HttpStatus.*
@@ -28,6 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
@@ -48,6 +50,7 @@ class FeedController(
     private val queryMyFeedListService: QueryMyFeedListService,
     private val queryMyApplyFeedListService: QueryMyApplyFeedListService,
     private val queryEmergencyFeedService: QueryEmergencyFeedService,
+    private val searchTitleFeedService: SearchTitleFeedService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -112,5 +115,10 @@ class FeedController(
     @GetMapping("/emergency")
     fun getEmergencyFeed(): List<FeedElement> {
         return queryEmergencyFeedService.execute()
+    }
+
+    @GetMapping("/search")
+    fun getSearchTitle(@RequestParam("keyword") keyword: String): QueryFeedDetailResponse {
+        return searchTitleFeedService.execute(keyword)
     }
 }
