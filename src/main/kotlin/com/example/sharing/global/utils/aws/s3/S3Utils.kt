@@ -25,7 +25,7 @@ class S3Utils(
     private val prefix: String
 ) {
     fun upload(file: MultipartFile): String {
-        val fileName = UUID.randomUUID().toString() + "-" + file.originalFilename
+        val fileName = UUID.randomUUID().toString() + "_" + file.originalFilename
         val objMeta = ObjectMetadata()
 
         val bytes = IOUtils.toByteArray(file.inputStream)
