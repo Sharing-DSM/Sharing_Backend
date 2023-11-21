@@ -5,6 +5,7 @@ import com.example.sharing.domain.user.presentation.dto.request.UserLoginRequest
 import com.example.sharing.domain.user.presentation.dto.request.UserSignUpRequest
 import com.example.sharing.domain.user.presentation.dto.response.QueryUserResponse
 import com.example.sharing.domain.user.presentation.dto.response.TokenResponse
+import com.example.sharing.domain.user.presentation.dto.response.UploadProfileResponse
 import com.example.sharing.domain.user.service.QueryUserService
 import com.example.sharing.domain.user.service.SetInterestAreaService
 import com.example.sharing.domain.user.service.UpdateUserInfoService
@@ -52,7 +53,7 @@ class UserController(
     fun updateUserInfo(@RequestBody @Valid request: UpdateUserInfoRequest) = updateUserInfoService.execute(request)
 
     @PostMapping("/upload")
-    fun uploadProfile(@RequestPart(name = "profile") file: MultipartFile): String {
+    fun uploadProfile(@RequestPart(name = "profile") file: MultipartFile): UploadProfileResponse {
         return uploadProfileService.execute(file)
     }
 }
