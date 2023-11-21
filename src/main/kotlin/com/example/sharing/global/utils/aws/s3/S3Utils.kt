@@ -30,12 +30,12 @@ class S3Utils(
         val byteArrayIs = ByteArrayInputStream(bytes)
 
         s3Client.putObject(
-            PutObjectRequest(bucketName, fileName, byteArrayIs, objMeta).withCannedAcl(
+            PutObjectRequest(bucketName, "/" + fileName, byteArrayIs, objMeta).withCannedAcl(
                 CannedAccessControlList.PublicRead
             )
         )
 
-        return s3Client.getUrl(bucketName, "/" + fileName).toString()
+        return s3Client.getResourceUrl(bucketName, fileName)
     }
 
     private fun verificationFile(file: MultipartFile): String {
