@@ -1,5 +1,6 @@
 package com.example.sharing.domain.feed.presentation
 
+import com.example.sharing.domain.feed.domain.Apply
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryFeedByMapRequest
@@ -10,6 +11,7 @@ import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressRes
 import com.example.sharing.domain.feed.presentation.dto.response.QueryFeedDetailResponse
 import com.example.sharing.domain.feed.service.CreateFeedService
 import com.example.sharing.domain.feed.service.DeleteFeedService
+import com.example.sharing.domain.feed.service.QueryApplicantService
 import com.example.sharing.domain.feed.service.QueryEmergencyFeedService
 import com.example.sharing.domain.feed.service.QueryFeedByInterestAreaService
 import com.example.sharing.domain.feed.service.QueryFeedByViewsService
@@ -51,6 +53,7 @@ class FeedController(
     private val queryMyApplyFeedListService: QueryMyApplyFeedListService,
     private val queryEmergencyFeedService: QueryEmergencyFeedService,
     private val searchTitleFeedService: SearchTitleFeedService,
+    private val queryApplicantService: QueryApplicantService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -120,5 +123,10 @@ class FeedController(
     @GetMapping("/search")
     fun getSearchTitle(@RequestParam("keyword") keyword: String): QueryFeedDetailResponse {
         return searchTitleFeedService.execute(keyword)
+    }
+
+    @GetMapping("/applicant/{feed-id}")
+    fun getApplicant(@PathVariable("feed-id") feedId: UUID): List<Apply> {
+        return queryApplicantService.execute(feedId)
     }
 }

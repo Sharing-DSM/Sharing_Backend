@@ -8,4 +8,5 @@ import java.util.*
 
 interface ApplyRepository: JpaRepository<Apply, UUID> {
     fun findAllByUserOrderByAppliedAtDesc(user: User): List<ApplyElement>
+    fun findAllByFeedId(feedId: UUID): List<Apply>
 }
