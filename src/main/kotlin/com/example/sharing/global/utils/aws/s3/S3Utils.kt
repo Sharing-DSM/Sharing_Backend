@@ -35,7 +35,7 @@ class S3Utils(
             )
         )
 
-        return s3Client.getUrl(bucketName, bucketName + "image/" + fileName).toString()
+        return s3Client.getUrl(bucketName, fileName).toString()
     }
 
     private fun verificationFile(file: MultipartFile): String {
