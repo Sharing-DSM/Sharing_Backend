@@ -16,5 +16,6 @@ data class QueryFeedDetailResponse(
     val isEmergency: Boolean,
     val isMine: Boolean,
     val type: Type,
-    val userId: UUID
+    val userId: UUID,
+    val userProfile: String
 )

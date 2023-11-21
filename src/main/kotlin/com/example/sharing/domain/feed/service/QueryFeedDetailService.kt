@@ -30,6 +30,7 @@ class QueryFeedDetailService(
             content = feed.content,
             isEmergency = feed.isEmergency,
             userId = feed.user.id,
+            userProfile = feed.user.profile,
             isMine = getIsMine(feed.user.id)
         )
     }
