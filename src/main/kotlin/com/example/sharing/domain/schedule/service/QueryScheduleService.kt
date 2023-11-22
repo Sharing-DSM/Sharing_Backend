@@ -14,6 +14,6 @@ class QueryScheduleService(
     @Transactional(readOnly = true)
     fun execute(): QueryScheduleResponse {
         val user = userFacade.getCurrentUser()
-        return QueryScheduleResponse(scheduleRepository.findAllByUserAndIsCompleted(user, false))
+        return QueryScheduleResponse(scheduleRepository.findAllByUserAndCompleted(user, false))
     }
 }

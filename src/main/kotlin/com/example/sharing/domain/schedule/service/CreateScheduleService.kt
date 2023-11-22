@@ -22,7 +22,7 @@ class CreateScheduleService (
                 title = request.title,
                 date = request.date,
                 user = user,
-                isCompleted = false
+                completed = false
             )
         )
     }

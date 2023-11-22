@@ -12,7 +12,7 @@ class UpdateIsCompletedService(
 ) {
     @Transactional
     fun execute(id: UUID, request: UpdateIsCompletedRequest) {
-        val  schedule = scheduleFacade.getById(scheduleId = id)
+        val schedule = scheduleFacade.getById(id)
         schedule.updateIsCompleted(request.isCompleted)
     }
 }

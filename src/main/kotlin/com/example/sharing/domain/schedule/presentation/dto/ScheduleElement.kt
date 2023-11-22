@@ -7,5 +7,5 @@ data class ScheduleElement(
     val id: UUID,
     val title: String,
     val date: LocalDate,
-    val isCompleted: Boolean,
+    val completed: Boolean,
 )

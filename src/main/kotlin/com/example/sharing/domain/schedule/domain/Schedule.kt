@@ -32,7 +32,7 @@ class Schedule (
     var date: LocalDate,
 
     @field:NotNull
-    var isCompleted: Boolean,
+    var completed: Boolean,
 
     user: User
 ) {
@@ -47,6 +47,6 @@ class Schedule (
     }
 
     fun updateIsCompleted(isCompleted: Boolean) {
-        this.isCompleted = isCompleted
+        this.completed = isCompleted
     }
 }
