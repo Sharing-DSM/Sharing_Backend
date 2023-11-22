@@ -1,10 +1,10 @@
 package com.example.sharing.domain.feed.presentation
 
-import com.example.sharing.domain.feed.domain.Apply
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryFeedByMapRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
+import com.example.sharing.domain.feed.presentation.dto.response.ApplicantElement
 import com.example.sharing.domain.feed.presentation.dto.response.ApplyElement
 import com.example.sharing.domain.feed.presentation.dto.response.FeedElement
 import com.example.sharing.domain.feed.presentation.dto.response.QueryAddressResponse
@@ -126,7 +126,7 @@ class FeedController(
     }
 
     @GetMapping("/applicant/{feed-id}")
-    fun getApplicant(@PathVariable("feed-id") feedId: UUID): List<Apply> {
+    fun getApplicant(@PathVariable("feed-id") feedId: UUID): List<ApplicantElement> {
         return queryApplicantService.execute(feedId)
     }
 }

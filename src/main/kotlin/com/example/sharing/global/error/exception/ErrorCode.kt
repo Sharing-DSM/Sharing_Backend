@@ -24,6 +24,7 @@ enum class ErrorCode(
 
     ALREADY_ACCOUNT_ID_EXISTS(409, "Already Account Id Exists"),
     ALREADY_ROOM_EXISTS(409, "Already Room Exists"),
+    ALREADY_APPLY(409, "Already apply"),
 
     FEIGN_EXPIRED_TOKEN(419, "Feign Expired Token"),
 

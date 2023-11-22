@@ -2,6 +2,7 @@ package com.example.sharing.domain.feed.service
 
 import com.example.sharing.domain.feed.domain.Apply
 import com.example.sharing.domain.feed.domain.repository.ApplyRepository
+import com.example.sharing.domain.feed.exception.AlreadyApplyException
 import com.example.sharing.domain.feed.facade.FeedFacade
 import com.example.sharing.domain.user.facade.UserFacade
 import org.springframework.stereotype.Service
@@ -19,6 +20,10 @@ class UserApplyService(
     fun execute(feedId: UUID) {
         val user = userFacade.getCurrentUser()
         val feed = feedFacade.getByFeedId(feedId)
+
+        if(applyRepository.existsByUserAndFeed(user, feed)) {
+            throw AlreadyApplyException.EXCEPTION
+        }
 
         applyRepository.save(Apply(UUID.randomUUID(), user, feed, LocalDateTime.now()))
     }
