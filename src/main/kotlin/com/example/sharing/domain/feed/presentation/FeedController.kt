@@ -20,6 +20,7 @@ import com.example.sharing.domain.feed.service.QueryFeedListByMapService
 import com.example.sharing.domain.feed.service.QueryMyApplyFeedListService
 import com.example.sharing.domain.feed.service.QueryMyFeedListService
 import com.example.sharing.domain.feed.service.SearchAddressService
+import com.example.sharing.domain.feed.service.SearchMapService
 import com.example.sharing.domain.feed.service.SearchTitleFeedService
 import com.example.sharing.domain.feed.service.UpdateFeedService
 import com.example.sharing.domain.feed.service.UserApplyService
@@ -54,6 +55,7 @@ class FeedController(
     private val queryEmergencyFeedService: QueryEmergencyFeedService,
     private val searchTitleFeedService: SearchTitleFeedService,
     private val queryApplicantService: QueryApplicantService,
+    private val searchMapService: SearchMapService,
 ) {
 
     @ResponseStatus(CREATED)
@@ -121,12 +123,17 @@ class FeedController(
     }
 
     @GetMapping("/search")
-    fun getSearchTitle(@RequestParam("keyword") keyword: String): QueryFeedDetailResponse {
+    fun getSearchTitle(@RequestParam("keyword") keyword: String): List<FeedElement> {
         return searchTitleFeedService.execute(keyword)
     }
 
     @GetMapping("/applicant/{feed-id}")
     fun getApplicant(@PathVariable("feed-id") feedId: UUID): List<ApplicantElement> {
         return queryApplicantService.execute(feedId)
+    }
+
+    @GetMapping("/search/map")
+    fun getSearchMap(@RequestParam("keyword") keyword: String): List<FeedElement> {
+        return searchMapService.execute(keyword)
     }
 }

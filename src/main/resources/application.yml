@@ -21,6 +21,8 @@ spring:
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+    serialization:
+      fail-on-empty-beans: false
 
   main:
     allow-bean-definition-overriding: true
@@ -53,3 +55,5 @@ cloud:
 
 socket:
   port: ${SOCKET_PORT}
+server:
+  port: 9999
