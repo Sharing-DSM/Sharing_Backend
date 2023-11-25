@@ -13,5 +13,5 @@ interface FeedRepository: JpaRepository<Feed, UUID> {
     fun findAllByAddressNameContaining(addressName: String): List<FeedElement>
     fun findAllByUser(user: User) : List<FeedElement>
     fun findAllByIsEmergency(isEmergency: Boolean): List<FeedElement>
-    fun findByTitleContaining(title: String): Feed
+    fun findByTitleContaining(title: String): List<FeedElement>
 }
