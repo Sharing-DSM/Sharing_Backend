@@ -15,9 +15,9 @@ class SearchMapService(
 ) {
     @Transactional(readOnly = true)
     fun execute(keyword: String): List<FeedElement> {
-        val x = kakaoAddressFeign.queryAddress(keyword,1,1).documents.get(1).x
-        val y = kakaoAddressFeign.queryAddress(keyword,1,1).documents.get(1).y
-        val address = kakaoAddressFeign.queryAddressByXAndY(x as Double, y as Double).documents.get(1).address.region1depthName
+        val x = kakaoAddressFeign.queryAddress(keyword,1,1).documents[0].x
+        val y = kakaoAddressFeign.queryAddress(keyword,1,1).documents[0].y
+        val address = kakaoAddressFeign.queryAddressByXAndY(x.toDouble(), y.toDouble()).documents[0].address.region1depthName
         return feedRepository.findAllByAddressNameContaining(address)
     }
 }
