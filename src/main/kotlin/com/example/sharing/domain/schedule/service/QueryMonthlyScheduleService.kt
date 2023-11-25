@@ -12,7 +12,6 @@ class QueryMonthlyScheduleService(
     private val scheduleRepository: ScheduleRepository,
     private val userFacade: UserFacade,
 ) {
-
     @Transactional(readOnly = true)
     fun execute(month: Int): QueryScheduleResponse {
         val user = userFacade.getCurrentUser()

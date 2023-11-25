@@ -47,5 +47,4 @@ class S3Utils(
         }
         return ext
     }
-
 }
