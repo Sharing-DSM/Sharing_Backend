@@ -16,7 +16,7 @@ class SearchMapService(
     fun execute(request: SearchFeedByMapRequest): List<FeedElement> {
         val location = kakaoAddressFeign.queryAddressByXAndY(request.x, request.y).documents[0].address.region1depthName
         return if (request.keyword == "") {
-            feedRepository.findAllBy()
+            feedRepository.findAllByAddressNameContaining(location)
         } else {
             feedRepository.findAllByTitleContainingAndAddressNameContaining(request.keyword, location)
         }
