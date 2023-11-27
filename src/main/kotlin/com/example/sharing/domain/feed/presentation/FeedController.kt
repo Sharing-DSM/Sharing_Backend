@@ -3,6 +3,7 @@ package com.example.sharing.domain.feed.presentation
 import com.example.sharing.domain.feed.presentation.dto.request.CreateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryAddressRequest
 import com.example.sharing.domain.feed.presentation.dto.request.QueryFeedByMapRequest
+import com.example.sharing.domain.feed.presentation.dto.request.SearchFeedByMapRequest
 import com.example.sharing.domain.feed.presentation.dto.request.UpdateFeedRequest
 import com.example.sharing.domain.feed.presentation.dto.response.ApplicantElement
 import com.example.sharing.domain.feed.presentation.dto.response.ApplyElement
@@ -132,8 +133,8 @@ class FeedController(
         return queryApplicantService.execute(feedId)
     }
 
-    @GetMapping("/search/map")
-    fun getSearchMap(@RequestParam("keyword") keyword: String): List<FeedElement> {
-        return searchMapService.execute(keyword)
+    @PostMapping("/search/map")
+    fun getSearchMap(@RequestBody @Valid request: SearchFeedByMapRequest): List<FeedElement> {
+        return searchMapService.execute(request)
     }
 }
