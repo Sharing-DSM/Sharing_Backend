@@ -13,5 +13,9 @@ class RefreshToken(
 
     @Indexed
     @field:NotBlank
-    val token: String
-)
+    var token: String
+) {
+    fun updateToken(token: String) {
+        this.token = token
+    }
+}

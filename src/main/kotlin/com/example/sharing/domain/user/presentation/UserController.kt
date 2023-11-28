@@ -12,6 +12,7 @@ import com.example.sharing.domain.user.service.UpdateUserInfoService
 import com.example.sharing.domain.user.service.UploadProfileService
 import com.example.sharing.domain.user.service.UserLoginService
 import com.example.sharing.domain.user.service.UserSignUpService
+import com.example.sharing.domain.user.service.UserTokenRefreshService
 import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
@@ -27,6 +28,7 @@ class UserController(
     private val queryUserService: QueryUserService,
     private val updateUserInfoService: UpdateUserInfoService,
     private val uploadProfileService: UploadProfileService,
+    private val tokenRefreshService: UserTokenRefreshService,
 ) {
     @ResponseStatus(CREATED)
     @PostMapping("/signup")
@@ -55,5 +57,10 @@ class UserController(
     @PostMapping("/upload")
     fun uploadProfile(@RequestPart(name = "profile") file: MultipartFile): UploadProfileResponse {
         return uploadProfileService.execute(file)
+    }
+
+    @PutMapping("/reissue")
+    fun tokenReissue(@RequestHeader("Authorization") refreshToken: String): TokenResponse {
+        return tokenRefreshService.execute(refreshToken)
     }
 }
