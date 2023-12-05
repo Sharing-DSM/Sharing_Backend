@@ -59,6 +59,6 @@ class SendChat2Service(
                 }
             }
 
-        fcmService.sendMessage(privateRoom.userB.deviceToken, "채팅", chat.text)
+        fcmService.sendMessage(privateRoom.userB.deviceToken, privateRoom.userB.name, chat.text)
     }
 }
