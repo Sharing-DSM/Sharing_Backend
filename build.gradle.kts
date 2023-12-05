@@ -31,6 +31,7 @@ dependencies {
     implementation(Dependencies.OPENFEIGN)
     implementation(Dependencies.SOCKET)
     implementation(Dependencies.CLOUD_AWS)
+    implementation(Dependencies.FIREBASE)
     annotationProcessor(Dependencies.CONFIGURATION_PROCESSOR)
 }
 

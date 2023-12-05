@@ -53,5 +53,7 @@ cloud:
       access-key: ${AWS_S3_ACCESS:asdf}
       secret-key: ${AWS_S3_SECRET:asdf}
 
+fcm:
+  value: ${FCM_VALUE}
 socket:
   port: ${SOCKET_PORT}

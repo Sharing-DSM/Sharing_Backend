@@ -14,5 +14,6 @@ object Dependencies {
     const val CONFIGURATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
     const val CLOUD_AWS ="org.springframework.cloud:spring-cloud-starter-aws:${DependencyVersions.AWS}.RELEASE"
     const val OPENFEIGN = "org.springframework.cloud:spring-cloud-starter-openfeign:${DependencyVersions.OPENFEIGN}"
-    const val SOCKET = "com.corundumstudio.socketio:netty-socketio:1.7.18"
+    const val SOCKET = "com.corundumstudio.socketio:netty-socketio:${DependencyVersions.SOCKET}"
+    const val FIREBASE = "com.google.firebase:firebase-admin:${DependencyVersions.FIREBASE}"
 }

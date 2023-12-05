@@ -1,6 +1,5 @@
 package com.example.sharing.domain.user.service
 
-import com.example.sharing.domain.user.domain.repository.UserRepository
 import com.example.sharing.domain.user.exception.PasswordMisMatchedException
 import com.example.sharing.domain.user.facade.UserFacade
 import com.example.sharing.domain.user.presentation.dto.request.UserLoginRequest
@@ -22,6 +21,8 @@ class UserLoginService(
         if (!passwordEncoder.matches(request.password, user.password)){
             throw PasswordMisMatchedException.EXCEPTION
         }
+
+        user.updateDeviceToken(request.deviceToken)
 
         return tokenProvider.getToken(user.accountId)
     }

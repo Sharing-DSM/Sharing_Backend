@@ -38,6 +38,8 @@ class User(
 
     @field:Length(max = 2000)
     var profile: String,
+
+    var deviceToken: String,
 ) {
     fun updateInterestArea(interestArea: String) {
         this.interestArea = interestArea
@@ -51,5 +53,9 @@ class User(
 
     fun update(profile: String) {
         this.profile = profile
+    }
+
+    fun updateDeviceToken(deviceToken: String) {
+        this.deviceToken = deviceToken
     }
 }

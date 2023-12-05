@@ -11,6 +11,7 @@ enum class ErrorCode(
     TOKEN_EXPIRED(401, "Token Expired"),
     TOKEN_INVALID(401, "Token Invalid"),
     FEIGN_UNAUTHORIZED(401, "Feign Unauthorized"),
+    DEVICE_TOKEN_INVALID(401, "Device Token Invalid"),
 
     FEIGN_FORBIDDEN(403, "Feign Forbidden"),
     INVALID_USER(403, "Invalid User"),

@@ -30,7 +30,8 @@ class UserSignUpService(
                 name = request.name,
                 age = request.age,
                 profile = "",
-                interestArea = null
+                interestArea = null,
+                deviceToken = "sharing"
             )
         )
     }
